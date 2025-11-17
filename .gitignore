@@ -1,0 +1,32 @@
+# =============== Unity generated folders ===============
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+MemoryCaptures/
+
+# =============== Visual Studio / VSCode ===============
+.vscode/
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# =============== OS generated files ===============
+.DS_Store
+Thumbs.db
+
+# =============== Build results ===============
+*.apk
+*.aab
+*.unitypackage
+
+# =============== Crash reports ===============
+sysinfo.txt
