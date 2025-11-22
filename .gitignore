@@ -1,4 +1,7 @@
 # =============== Unity generated folders ===============
+[Lưu ý—comment chỉ để đọc, không lỗi]
+
+# Unity folders
 Library/
 Temp/
 Obj/
@@ -8,7 +11,13 @@ Logs/
 UserSettings/
 MemoryCaptures/
 
+# Package cache (không phải thư mục Packages gốc)
+Packages/com.unity.*
+Packages/com.unity.package-manager*
+Packages/packages-lock.json
+
 # =============== Visual Studio / VSCode ===============
+.vs/
 .vscode/
 *.csproj
 *.sln
@@ -27,6 +36,7 @@ Thumbs.db
 *.apk
 *.aab
 *.unitypackage
+*.app
 
 # =============== Crash reports ===============
 sysinfo.txt
