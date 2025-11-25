@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Bullet
+  - PlayerBullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -41,8 +44,41 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Floor
+    uniqueID: 2341699329
+    locked: 0
+  - name: Rock
+    uniqueID: 3579814151
+    locked: 0
   - name: Warrior
     uniqueID: 3320244573
+    locked: 0
+  - name: Witch
+    uniqueID: 3701785723
+    locked: 0
+  - name: PlayerBullet
+    uniqueID: 2564177513
+    locked: 0
+  - name: Weapon
+    uniqueID: 3697051575
+    locked: 0
+  - name: Enemy_04
+    uniqueID: 698928809
+    locked: 0
+  - name: Enemy_01
+    uniqueID: 2759481925
+    locked: 0
+  - name: Skull
+    uniqueID: 3198591257
+    locked: 0
+  - name: Reward
+    uniqueID: 4155609135
+    locked: 0
+  - name: Hp
+    uniqueID: 3887635997
+    locked: 0
+  - name: FireBall
+    uniqueID: 3437534059
     locked: 0
   m_RenderingLayers:
   - Default

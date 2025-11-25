@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 73d20a50aa19cc6478b1fbace0a6e0e5
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3586800538107563624
+    second: Taoist_0
+  - first:
+      213: -6234920580456249882
+    second: Taoist_1
+  - first:
+      213: -8611351994299762392
+    second: Taoist_2
+  - first:
+      213: 2552866578256921770
+    second: Taoist_3
+  - first:
+      213: -1296724249236059146
+    second: Taoist_4
+  - first:
+      213: -4909201799643680634
+    second: Taoist_5
+  - first:
+      213: -1058145749396620502
+    second: Taoist_6
+  - first:
+      213: -3804247489327002410
+    second: Taoist_7
+  - first:
+      213: -962427362681464191
+    second: Taoist_8
+  - first:
+      213: -5800390120266605877
+    second: Taoist_9
+  - first:
+      213: 8541496410702628507
+    second: Taoist_10
+  - first:
+      213: 2783002854609663066
+    second: Taoist_11
+  - first:
+      213: -4916717898709970988
+    second: Taoist_12
+  - first:
+      213: 450240864096142481
+    second: Taoist_13
+  - first:
+      213: 4707399604380724687
+    second: Taoist_14
+  - first:
+      213: 4347782769529077394
+    second: Taoist_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Taoist_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 164
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8913bed0aef193ec0800000000000000
+      internalID: -3586800538107563624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_1
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 0
+        width: 164
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e5022f14cc1979a0800000000000000
+      internalID: -6234920580456249882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_2
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 0
+        width: 164
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82939ef6cf45e7880800000000000000
+      internalID: -8611351994299762392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_3
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 0
+        width: 170
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa488f390aa9d6320800000000000000
+      internalID: 2552866578256921770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_4
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 0
+        width: 176
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb46a86a2c110ee0800000000000000
+      internalID: -1296724249236059146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_5
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 0
+        width: 176
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 680b78929f20fdbb0800000000000000
+      internalID: -4909201799643680634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_6
+      rect:
+        serializedVersion: 2
+        x: 1070
+        y: 0
+        width: 170
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2bff961c06b051f0800000000000000
+      internalID: -1058145749396620502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_7
+      rect:
+        serializedVersion: 2
+        x: 1253
+        y: 0
+        width: 164
+        height: 229
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dc0ef07019943bc0800000000000000
+      internalID: -3804247489327002410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_8
+      rect:
+        serializedVersion: 2
+        x: 1430
+        y: 0
+        width: 164
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a514da965c4a2f0800000000000000
+      internalID: -962427362681464191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_9
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 18
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bcad2dadaefd08fa0800000000000000
+      internalID: -5800390120266605877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_10
+      rect:
+        serializedVersion: 2
+        x: 1607
+        y: 0
+        width: 164
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9644321bbd798670800000000000000
+      internalID: 8541496410702628507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_11
+      rect:
+        serializedVersion: 2
+        x: 1784
+        y: 0
+        width: 164
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5438ede9563f9620800000000000000
+      internalID: 2783002854609663066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_12
+      rect:
+        serializedVersion: 2
+        x: 1961
+        y: 0
+        width: 164
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df469afe1f44cbb0800000000000000
+      internalID: -4916717898709970988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_13
+      rect:
+        serializedVersion: 2
+        x: 2132
+        y: 0
+        width: 170
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 194c0df2ea39f3600800000000000000
+      internalID: 450240864096142481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_14
+      rect:
+        serializedVersion: 2
+        x: 2315
+        y: 0
+        width: 164
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcd6de2dffa045140800000000000000
+      internalID: 4707399604380724687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Taoist_15
+      rect:
+        serializedVersion: 2
+        x: 2492
+        y: 4
+        width: 163
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29e3852b46d665c30800000000000000
+      internalID: 4347782769529077394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Taoist_0: -3586800538107563624
+      Taoist_1: -6234920580456249882
+      Taoist_10: 8541496410702628507
+      Taoist_11: 2783002854609663066
+      Taoist_12: -4916717898709970988
+      Taoist_13: 450240864096142481
+      Taoist_14: 4707399604380724687
+      Taoist_15: 4347782769529077394
+      Taoist_2: -8611351994299762392
+      Taoist_3: 2552866578256921770
+      Taoist_4: -1296724249236059146
+      Taoist_5: -4909201799643680634
+      Taoist_6: -1058145749396620502
+      Taoist_7: -3804247489327002410
+      Taoist_8: -962427362681464191
+      Taoist_9: -5800390120266605877
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
