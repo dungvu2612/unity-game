@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Witch : Player
+public class WitchSkillBurst : MonoBehaviour
 {
     [Header("Witch Skill Settings")]
-    [SerializeField] private GameObject skillBulletPrefab;   // prefab đạn (WandBullet)
-    [SerializeField] private Transform firePoint;            // vị trí bắn, nếu null sẽ dùng transform player
+    [SerializeField] private GameObject skillBulletPrefab;   // prefab đạn SKILL (khác đạn thường)
+    [SerializeField] private Transform firePoint;            // vị trí bắn skill
 
     [SerializeField] private KeyCode skillKey = KeyCode.Space;
 
@@ -25,22 +25,20 @@ public class Witch : Player
     [SerializeField] private float armorRestorePerBurst = 5f;
 
     private bool isCastingSkill;
+    private Witch witch;   // tham chiếu đến Witch (Player con)
 
-    protected override void Start()
+    private void Awake()
     {
-        base.Start();
-        isCastingSkill = false;
+        witch = GetComponent<Witch>();
+        if (witch == null)
+        {
+            Debug.LogError("[WitchSkillBurst] Không tìm thấy Witch trên GameObject!");
+        }
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
-        HandleSkillInput();
-    }
-
-    private void HandleSkillInput()
-    {
-        if (Input.GetKeyDown(skillKey) && !isCastingSkill)
+        if (!isCastingSkill && Input.GetKeyDown(skillKey))
         {
             TryCastSkill();
         }
@@ -48,8 +46,10 @@ public class Witch : Player
 
     private void TryCastSkill()
     {
+        if (witch == null) return;
+
         // tốn mana 1 lần khi bắt đầu skill
-        if (!SpendMana(skillManaCost))
+        if (!witch.TrySpendMana(skillManaCost))
         {
             Debug.Log("Not enough mana for Witch skill!");
             return;
@@ -66,7 +66,7 @@ public class Witch : Player
         while (elapsed < skillDuration)
         {
             FireInMultipleDirections();
-            RestoreArmor(armorRestorePerBurst);
+            witch.RestoreArmor(armorRestorePerBurst);
 
             yield return new WaitForSeconds(skillFireInterval);
             elapsed += skillFireInterval;
@@ -77,7 +77,11 @@ public class Witch : Player
 
     private void FireInMultipleDirections()
     {
-        if (skillBulletPrefab == null) return;
+        if (skillBulletPrefab == null)
+        {
+            Debug.LogWarning("[WitchSkillBurst] skillBulletPrefab chưa được gán!");
+            return;
+        }
 
         Vector3 spawnPos = firePoint != null ? firePoint.position : transform.position;
 

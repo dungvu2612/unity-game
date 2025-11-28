@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 165735509184821612}
   - component: {fileID: 3949559802207585312}
   - component: {fileID: 138115435782376521}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_1_Malle
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1535485371
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 493c63629c304184a9613f14eb5492d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -321,9 +321,21 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6578613333204737305, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7464017823887046726, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
       propertyPath: m_Name
       value: Hp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464017823887046726, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8968029281729937261, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

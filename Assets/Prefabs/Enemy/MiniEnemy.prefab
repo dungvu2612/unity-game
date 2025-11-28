@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2673272027805514996}
   - component: {fileID: 6179180103675576572}
   - component: {fileID: 2683542553210724788}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MiniEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -336,9 +336,21 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.1372549
       objectReference: {fileID: 0}
+    - target: {fileID: 6578613333204737305, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7464017823887046726, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
       propertyPath: m_Name
       value: Hp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464017823887046726, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8968029281729937261, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WandBullet : MonoBehaviour
 {
@@ -6,6 +6,7 @@ public class WandBullet : MonoBehaviour
     [SerializeField] private float timeDestroy = 1f;
     [SerializeField] private float damage = 10f;
     [SerializeField] private GameObject bloodPrefabs;
+
     void Start()
     {
         Destroy(gameObject, timeDestroy);
@@ -15,11 +16,13 @@ public class WandBullet : MonoBehaviour
     {
         MoveBullet();
     }
+
     void MoveBullet()
     {
-        transform.Translate(transform.up * moveSpeed * Time.deltaTime, Space.World);
-
+        // 🔥 Bay theo hướng transform.right thay vì transform.up
+        transform.Translate(transform.right * moveSpeed * Time.deltaTime, Space.World);
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
@@ -28,9 +31,12 @@ public class WandBullet : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
+
+                // máu bắn ra
                 GameObject blood = Instantiate(bloodPrefabs, transform.position, Quaternion.identity);
                 Destroy(blood, 1f);
             }
+
             Destroy(gameObject);
         }
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3380448710929148611}
   - component: {fileID: 2504134225000420579}
   - component: {fileID: 514778697270703018}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_4_FireBall
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -310,9 +310,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6578613333204737305, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7464017823887046726, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
       propertyPath: m_Name
       value: Hp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464017823887046726, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8968029281729937261, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

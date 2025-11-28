@@ -10,6 +10,7 @@ TagManager:
   - EnemyBullet
   - Wall
   - Reward
+  - Projectiles
   layers:
   - Default
   - TransparentFX
@@ -100,6 +101,9 @@ TagManager:
     locked: 0
   - name: CharactersUI
     uniqueID: 2962612095
+    locked: 0
+  - name: SkillKnight
+    uniqueID: 1206088431
     locked: 0
   m_RenderingLayers:
   - Default

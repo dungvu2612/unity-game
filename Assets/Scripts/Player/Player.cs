@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public abstract class Player : MonoBehaviour
+public abstract  class Player : MonoBehaviour
 {
     [Header("Move")]
     [SerializeField] protected float moveSpeed = 10f;

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 489482730107764570}
   - component: {fileID: 7531326404785520215}
   - component: {fileID: 3870547394802410394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy_02_Explosion
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 698928809
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -737581741659526925, guid: da36367c11172bb4fa9814edc9a0d7a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -303,9 +303,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6578613333204737305, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7464017823887046726, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
       propertyPath: m_Name
       value: Hp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464017823887046726, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8968029281729937261, guid: 3f7e94f904ca3fc46a5bafe6c74148bc, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
