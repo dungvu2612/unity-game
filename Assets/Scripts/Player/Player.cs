@@ -15,11 +15,31 @@ public abstract class Player : MonoBehaviour
     protected float currentHP;
     protected float currentArmor;
     protected float currentMana;
+    private AudioSource audioSource;
 
     [Header("UI Bars")]
-    [SerializeField] private Image hpBar;      // HeartBar
-    [SerializeField] private Image armorBar;   // ArmorBar
-    [SerializeField] private Image manaBar;    // ManaBar
+    [SerializeField] private Image hpBar;
+    [SerializeField] private Image armorBar;
+    [SerializeField] private Image manaBar;
+
+    [Header("Sound")]
+    [SerializeField] private AudioClip footstepSFX;      // tiếng bước chân
+    [SerializeField] private float footstepInterval = 0.25f; // thời gian giữa 2 bước
+    [SerializeField] private AudioClip buffPickupSFX;    // tiếng khi được buff
+    [SerializeField] private AudioClip hitSFX;           // tiếng khi nhận damage
+    [SerializeField] private AudioClip deathSFX;         // tiếng khi chết
+
+    private float nextFootstepTime = 0f;                 // timer cho bước chân
+
+    public void SetupUIBars(Image hp, Image armor, Image mana)
+    {
+        hpBar = hp;
+        armorBar = armor;
+        manaBar = mana;
+
+        // Cập nhật fill ngay theo currentHP/Armor/Mana
+        UpdateBars();
+    }
 
     protected Rigidbody2D rb;
     protected SpriteRenderer spriteRenderer;
@@ -32,6 +52,7 @@ public abstract class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();   // nhớ add AudioSource trên prefab Player
     }
 
     protected virtual void Start()
@@ -47,6 +68,7 @@ public abstract class Player : MonoBehaviour
     {
         MovePlayer();
         UpdateAnimation();
+        HandleFootstepSound();      // 🔊 TIẾNG BƯỚC CHÂN
     }
 
     protected virtual Vector2 GetInput()
@@ -83,6 +105,31 @@ public abstract class Player : MonoBehaviour
         animator.SetBool("isWalk", isMoving);
     }
 
+    // ================== SOUND ==================
+
+    // 🔊 Tiếng bước chân khi đang di chuyển
+    private void HandleFootstepSound()
+    {
+        if (audioSource == null || footstepSFX == null || rb == null) return;
+
+        bool isMoving = rb.linearVelocity.sqrMagnitude > 0.01f;
+
+        if (isMoving && Time.time >= nextFootstepTime)
+        {
+            audioSource.PlayOneShot(footstepSFX);
+            nextFootstepTime = Time.time + footstepInterval;
+        }
+    }
+
+    // 🔊 Tiếng buff – gọi hàm này khi nhặt 1 bình buff (HP / Armor / Mana)
+    public virtual void PlayBuffSound()
+    {
+        if (audioSource != null && buffPickupSFX != null)
+        {
+            audioSource.PlayOneShot(buffPickupSFX);
+        }
+    }
+
     // ================== COMBAT / STATS ==================
 
     // Enemy gọi hàm này khi gây sát thương
@@ -109,7 +156,10 @@ public abstract class Player : MonoBehaviour
         currentArmor = Mathf.Clamp(currentArmor, 0f, maxArmor);
 
         UpdateBars();
-
+        if (audioSource != null && hitSFX != null)
+        {
+            audioSource.PlayOneShot(hitSFX);
+        }
         if (currentHP <= 0f)
         {
             Die();
@@ -122,6 +172,7 @@ public abstract class Player : MonoBehaviour
 
         currentMana = Mathf.Clamp(currentMana + amount, 0f, maxMana);
         UpdateBars();
+       PlayBuffSound();
     }
 
     public virtual void RestoreArmor(float amount)
@@ -130,6 +181,7 @@ public abstract class Player : MonoBehaviour
 
         currentArmor = Mathf.Clamp(currentArmor + amount, 0f, maxArmor);
         UpdateBars();
+        PlayBuffSound();
     }
     public virtual void RestoreHP(float amount)
     {
@@ -137,9 +189,10 @@ public abstract class Player : MonoBehaviour
 
         currentHP = Mathf.Clamp(currentHP + amount, 0f, maxHP);
         UpdateBars();
+        PlayBuffSound();
     }
 
-    // ==== NEW: Buff tốc chạy trong 1 khoảng thời gian ====
+    // ==== Buff tốc chạy trong 1 khoảng thời gian ====
     public virtual void AddSpeedBuff(float bonusSpeed, float duration)
     {
         StartCoroutine(SpeedBuffRoutine(bonusSpeed, duration));
@@ -179,6 +232,15 @@ public abstract class Player : MonoBehaviour
 
     protected virtual void Die()
     {
+        // 🔊 tiếng chết – dùng PlayClipAtPoint để không bị cắt khi Destroy
+        if (deathSFX != null)
+        {
+            AudioSource.PlayClipAtPoint(deathSFX, transform.position);
+        }
+
+        if (PauseMenuManager.Instance != null)
+            PauseMenuManager.Instance.ShowGameOver();
+
         Destroy(gameObject);
     }
 }

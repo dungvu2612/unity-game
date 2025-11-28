@@ -7,6 +7,9 @@ TagManager:
   - Bullet
   - PlayerBullet
   - Enemy
+  - EnemyBullet
+  - Wall
+  - Reward
   layers:
   - Default
   - TransparentFX
@@ -14,13 +17,13 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - EnemyBullet
+  - PlayerBullet
+  - Enemy
+  - Player
+  - Wall
+  - Background
+  - CharacterUI
   - 
   - 
   - 
@@ -50,6 +53,9 @@ TagManager:
   - name: Rock
     uniqueID: 3579814151
     locked: 0
+  - name: Door
+    uniqueID: 660197695
+    locked: 0
   - name: Warrior
     uniqueID: 3320244573
     locked: 0
@@ -62,11 +68,20 @@ TagManager:
   - name: Weapon
     uniqueID: 3697051575
     locked: 0
-  - name: Enemy_04
+  - name: Enemy
     uniqueID: 698928809
     locked: 0
   - name: Enemy_01
     uniqueID: 2759481925
+    locked: 0
+  - name: BossSkill
+    uniqueID: 4067104975
+    locked: 0
+  - name: Boss
+    uniqueID: 4040134977
+    locked: 0
+  - name: Blood
+    uniqueID: 4270442383
     locked: 0
   - name: Skull
     uniqueID: 3198591257
@@ -79,6 +94,12 @@ TagManager:
     locked: 0
   - name: FireBall
     uniqueID: 3437534059
+    locked: 0
+  - name: Background
+    uniqueID: 845092085
+    locked: 0
+  - name: CharactersUI
+    uniqueID: 2962612095
     locked: 0
   m_RenderingLayers:
   - Default

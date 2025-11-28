@@ -5,6 +5,7 @@ public class WandBullet : MonoBehaviour
     [SerializeField] private float moveSpeed = 25f;
     [SerializeField] private float timeDestroy = 1f;
     [SerializeField] private float damage = 10f;
+    [SerializeField] private GameObject bloodPrefabs;
     void Start()
     {
         Destroy(gameObject, timeDestroy);
@@ -27,6 +28,8 @@ public class WandBullet : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
+                GameObject blood = Instantiate(bloodPrefabs, transform.position, Quaternion.identity);
+                Destroy(blood, 1f);
             }
             Destroy(gameObject);
         }

@@ -15,7 +15,7 @@ public class PickupItem : MonoBehaviour
     [Header("Common Value")]
     public float amount = 20f;
 
-    [Header("Speed Buff Settings")]
+    [Header("Speed Buff Time")]
     public float speedDuration = 5f;
 
     private void OnTriggerEnter2D(Collider2D collision)

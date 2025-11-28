@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using System;   
 public abstract class Enemy : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] protected float maxHP = 100f;
-    [SerializeField] protected float speedOfEnemy = 2.0f;
+    [SerializeField] protected float speedOfEnemy = 20f;
     protected float currentHP;
 
     [SerializeField] private Image HpBar;
     protected Player player;
     protected Rigidbody2D rb;
-
+    public event Action OnDeath;
     [Header("Loot Settings")]
     [SerializeField] private GameObject manaPickupPrefab;
     [SerializeField] private GameObject hpPickupPrefab;
@@ -31,6 +31,7 @@ public abstract class Enemy : MonoBehaviour
         currentHP = maxHP;
         UpdateHpBar();
     }
+    protected virtual void Update() { }
 
     protected virtual void FixedUpdate()
     {
@@ -95,11 +96,16 @@ public abstract class Enemy : MonoBehaviour
     {
         DropLoot();
         ShowDeathIcon();
+
+       
+        OnDeath?.Invoke();
+
         Destroy(gameObject);
     }
     protected virtual void DropLoot()
     {
-        float roll = Random.value; // 0 → 1
+        float roll = UnityEngine.Random.value;
+
 
         // 20% Mana
         if (roll < 0.20f)

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4606497253075040843}
   - component: {fileID: 1466254300428689126}
   - component: {fileID: -1234602062505946353}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WandBullet
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.25, y: 0.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -152,8 +152,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 25
-  timeDestroy: 1
+  timeDestroy: 3
   damage: 10
+  bloodPrefabs: {fileID: 5941379105891344055, guid: 66e6dc94d9bd4924d8d7e7968140bf2a, type: 3}
 --- !u!50 &-1234602062505946353
 Rigidbody2D:
   serializedVersion: 5
