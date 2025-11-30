@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 738933620659807072}
   - component: {fileID: -3216528322728095943}
   - component: {fileID: 8730318499188390671}
-  - component: {fileID: 4997942731292788710}
-  - component: {fileID: -2760864740763239771}
+  - component: {fileID: 1679876931452255876}
   m_Layer: 0
   m_Name: BuffSpeed
   m_TagString: Untagged
@@ -81,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -139358161
-  m_SortingLayer: 10
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: -7670126635493115527, guid: e8eed770aa4b47048b58bf1a7b301ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -167,7 +166,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4997942731292788710
+--- !u!114 &1679876931452255876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,22 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb74fed727280f44ba5ecd5eb152a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
-  type: 2
-  amount: 20
+  type: 0
+  amount: 15
   speedDuration: 5
---- !u!114 &-2760864740763239771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1611821865289576478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a5fce79f99c5844faaccd033703f4c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupIdleFX
-  floatAmplitude: 0.3
-  floatFrequency: 2
-  scaleAmplitude: 0.3
-  scaleFrequency: 3

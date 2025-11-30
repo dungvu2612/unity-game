@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5926381796947150046}
   - component: {fileID: 1524689560884736554}
   - component: {fileID: 2453685458468262224}
-  - component: {fileID: -185546687198142267}
   m_Layer: 0
   m_Name: BuffBlood
   m_TagString: Untagged
@@ -82,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -139358161
-  m_SortingLayer: 10
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 3175706964540721925, guid: 7429e351db033624d923158ff1c5b3ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -196,21 +195,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickupItem
   type: 1
-  amount: 20
+  amount: 50
   speedDuration: 5
---- !u!114 &-185546687198142267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268062238756331731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a5fce79f99c5844faaccd033703f4c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupIdleFX
-  floatAmplitude: 0.1
-  floatFrequency: 2
-  scaleAmplitude: 0.1
-  scaleFrequency: 3

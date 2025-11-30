@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9cbee707a0dbdf4fb323b556559d480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHP: 100
+  maxHP: 70
   speedOfEnemy: 7
   HpBar: {fileID: 3563763226018663596}
   manaPickupPrefab: {fileID: 2010962587408740577, guid: 46b1b782dac04fb49a3699444c55d910, type: 3}

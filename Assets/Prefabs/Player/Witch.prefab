@@ -112,13 +112,13 @@ MonoBehaviour:
   firePos: {fileID: 7349694517482530092}
   bulletPrefab: {fileID: 1767036241897228004, guid: f6ce056198cccd141a653d3c382fd2a4, type: 3}
   shotDelay: 0.15
-  maxAmmo: 15
+  maxAmmo: 25
   currentAmmo: 0
   ammoText: {fileID: 0}
   reloadTime: 1
   shootSFX: {fileID: 8300000, guid: 5e1a9f876d3dafd47bc6b3dde25135fa, type: 3}
-  reloadSFX: {fileID: 8300000, guid: d1afd3f4d23c24f418ffc315afb04965, type: 3}
-  emptySFX: {fileID: 8300000, guid: c458b6714dab015479d507b21fd2cead, type: 3}
+  reloadSFX: {fileID: 8300000, guid: 4504d200e926eff4d9067207d961fe38, type: 3}
+  emptySFX: {fileID: 0}
 --- !u!82 &5474708609062737941
 AudioSource:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.805
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -229,12 +229,13 @@ GameObject:
   - component: {fileID: 5077015132142098251}
   - component: {fileID: 7418043893048605188}
   - component: {fileID: 3027038192655966134}
-  - component: {fileID: 3870235498263720134}
   - component: {fileID: 2070966111505650106}
   - component: {fileID: 2427757923315761031}
-  - component: {fileID: 2539616621550841685}
   - component: {fileID: 2848223924816680980}
   - component: {fileID: -6887128004001863883}
+  - component: {fileID: 3636832909995895232}
+  - component: {fileID: -5907581226729715718}
+  - component: {fileID: 2539616621550841685}
   m_Layer: 9
   m_Name: Witch
   m_TagString: Player
@@ -404,30 +405,6 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
---- !u!114 &3870235498263720134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2560382371246760666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3fbd9a6696251d40939b8925880e44d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  moveSpeed: 15
-  maxHP: 100
-  maxArmor: 50
-  maxMana: 20
-  hpBar: {fileID: 0}
-  armorBar: {fileID: 0}
-  manaBar: {fileID: 0}
-  footstepSFX: {fileID: 8300000, guid: 023ea3ddeaa8dd146b7633a0800e5a0e, type: 3}
-  footstepInterval: 0.3
-  buffPickupSFX: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
-  hitSFX: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
-  deathSFX: {fileID: 8300000, guid: f1cb5d83282f2904a85f73111d068616, type: 3}
 --- !u!95 &2070966111505650106
 Animator:
   serializedVersion: 7
@@ -462,6 +439,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f304b16698dee4bb3842fca26c2f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &2848223924816680980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560382371246760666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56b1e2838de2d4a4799fc20ff7cdd5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WitchSkillBurst
+  skillBulletPrefab: {fileID: 8832159279623254003, guid: baefea21125630e4993a6b2bc83b480b, type: 3}
+  firePoint: {fileID: 7349694517482530092}
+  skillKey: 32
+  skillManaCost: 10
+  skillDuration: 3
+  skillFireInterval: 0.6
+  skillDirections: 6
+  armorRestorePerBurst: 5
+--- !u!114 &-6887128004001863883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560382371246760666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ee8a55c7593253498d60a941ea8401b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MenuCharacterStats
+  characterName: Witch
+  HP: 200
+  SP: 100
+  MP: 30
+  gameplayPrefab: {fileID: 2560382371246760666}
+--- !u!114 &3636832909995895232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560382371246760666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16ccdb35668b3c479d3933887620987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  maxHP: 80
+  maxArmor: 50
+  maxMana: 100
+  hpBar: {fileID: 0}
+  armorBar: {fileID: 0}
+  manaBar: {fileID: 0}
+  buffPickupSFX: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
+  hitSFX: {fileID: 0}
+  deathSFX: {fileID: 0}
+--- !u!114 &-5907581226729715718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560382371246760666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a736b29c93e4054f9ef3c3f88a54f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  moveSpeed: 15
+  footstepSFX: {fileID: 0}
+  footstepInterval: 0.25
 --- !u!82 &2539616621550841685
 AudioSource:
   m_ObjectHideFlags: 0
@@ -559,43 +609,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2848223924816680980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2560382371246760666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56b1e2838de2d4a4799fc20ff7cdd5df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WitchSkillBurst
-  skillBulletPrefab: {fileID: 8832159279623254003, guid: baefea21125630e4993a6b2bc83b480b, type: 3}
-  firePoint: {fileID: 7349694517482530092}
-  skillKey: 32
-  skillManaCost: 10
-  skillDuration: 3
-  skillFireInterval: 0.6
-  skillDirections: 6
-  armorRestorePerBurst: 5
---- !u!114 &-6887128004001863883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2560382371246760666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee8a55c7593253498d60a941ea8401b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuCharacterStats
-  characterName: Witch
-  HP: 80
-  SP: 100
-  MP: 30
-  gameplayPrefab: {fileID: 2560382371246760666}
 --- !u!1 &6618743084870792985
 GameObject:
   m_ObjectHideFlags: 0

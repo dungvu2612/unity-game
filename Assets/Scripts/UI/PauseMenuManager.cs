@@ -4,9 +4,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenuManager : MonoBehaviour
 {
     [Header("UI Roots")]
-    [SerializeField] private GameObject hudRoot;        // HUD: máu, mana, ammo...
-    [SerializeField] private GameObject pauseMenuRoot;  // GamePause (màn hình pause)
-    [SerializeField] private GameObject gameOverRoot;   // (nếu có, có thể để null)
+    [SerializeField] private GameObject hudRoot;      
+    [SerializeField] private GameObject pauseMenuRoot;  
+    [SerializeField] private GameObject gameOverRoot;   
+    [SerializeField] private GameObject winRoot;
     public static PauseMenuManager Instance { get; private set; }
     private void Awake()
     {
@@ -63,4 +64,14 @@ public class PauseMenuManager : MonoBehaviour
         if (pauseMenuRoot != null) pauseMenuRoot.SetActive(false);
         if (gameOverRoot != null) gameOverRoot.SetActive(true);
     }
+    public void ShowWinScreen()
+    {
+        Time.timeScale = 0f;
+
+        if (hudRoot != null) hudRoot.SetActive(false);
+        if (pauseMenuRoot != null) pauseMenuRoot.SetActive(false);
+        if (gameOverRoot != null) gameOverRoot.SetActive(false);
+        if (winRoot != null) winRoot.SetActive(true);
+    }
 }
+

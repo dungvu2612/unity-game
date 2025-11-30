@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3380448710929148611}
   - component: {fileID: 2504134225000420579}
   - component: {fileID: 514778697270703018}
+  - component: {fileID: 2321336713348607488}
   m_Layer: 8
   m_Name: Enemy_4_FireBall
   m_TagString: Enemy
@@ -129,20 +130,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47feab0ce872c134b96ba9acb6df8207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHP: 20
-  speedOfEnemy: 5
-  HpBar: {fileID: 2866182963313161706}
-  manaPickupPrefab: {fileID: 2010962587408740577, guid: 46b1b782dac04fb49a3699444c55d910, type: 3}
-  hpPickupPrefab: {fileID: 1268062238756331731, guid: de0d80ffa2b6e0b4f9aade7dac3329bd, type: 3}
-  speedPickupPrefab: {fileID: 1611821865289576478, guid: 01366f1af2aafdb4eb89549e8d911ca5, type: 3}
-  deathIconPrefab: {fileID: 6908645832461545259, guid: 127ebc2dd921d524f82272ad8dad9a6d, type: 3}
-  deathIconDuration: 5
   fireballPrefab: {fileID: 6092743692127851085, guid: 2ab280e3fa90b2843b312b1d9b7493ef, type: 3}
   fireballCount: 4
-  orbitRadius: 4
-  orbitSpeed: 90
+  orbitRadius: 5
+  orbitSpeed: 100
   fireballMoveSpeed: 15
-  fireballDamage: 20
+  fireballDamage: 15
   attackCooldown: 2
   respawnDelay: 1
 --- !u!50 &2504134225000420579
@@ -218,6 +211,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.553442, y: 5.381336}
   m_EdgeRadius: 0
+--- !u!114 &2321336713348607488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107625622582256982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f4925b9e4087354b8b48f33dbc98e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  maxHP: 70
+  speedOfEnemy: 10
+  HpBar: {fileID: 2866182963313161706}
+  manaPickupPrefab: {fileID: 2010962587408740577, guid: 46b1b782dac04fb49a3699444c55d910, type: 3}
+  hpPickupPrefab: {fileID: 1268062238756331731, guid: de0d80ffa2b6e0b4f9aade7dac3329bd, type: 3}
+  speedPickupPrefab: {fileID: 1611821865289576478, guid: 01366f1af2aafdb4eb89549e8d911ca5, type: 3}
+  deathIconPrefab: {fileID: 6908645832461545259, guid: 127ebc2dd921d524f82272ad8dad9a6d, type: 3}
+  deathIconDuration: 5
 --- !u!1001 &1580963946747992240
 PrefabInstance:
   m_ObjectHideFlags: 0

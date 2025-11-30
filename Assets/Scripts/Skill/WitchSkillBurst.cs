@@ -25,14 +25,20 @@ public class WitchSkillBurst : MonoBehaviour
     [SerializeField] private float armorRestorePerBurst = 5f;
 
     private bool isCastingSkill;
-    private Witch witch;   // tham chiếu đến Witch (Player con)
+    private Player player;   // dùng Player chung
 
     private void Awake()
     {
-        witch = GetComponent<Witch>();
-        if (witch == null)
+        // lấy Player trên chính object này, nếu không có thì thử trên cha
+        player = GetComponent<Player>();
+        if (player == null)
         {
-            Debug.LogError("[WitchSkillBurst] Không tìm thấy Witch trên GameObject!");
+            player = GetComponentInParent<Player>();
+        }
+
+        if (player == null)
+        {
+            Debug.LogError("[WitchSkillBurst] Không tìm thấy Player trên GameObject hoặc cha!");
         }
     }
 
@@ -46,12 +52,12 @@ public class WitchSkillBurst : MonoBehaviour
 
     private void TryCastSkill()
     {
-        if (witch == null) return;
+        if (player == null) return;
 
         // tốn mana 1 lần khi bắt đầu skill
-        if (!witch.TrySpendMana(skillManaCost))
+        if (!player.TrySpendMana(skillManaCost))
         {
-            Debug.Log("Not enough mana for Witch skill!");
+            Debug.Log("[WitchSkillBurst] Not enough mana for skill!");
             return;
         }
 
@@ -66,7 +72,7 @@ public class WitchSkillBurst : MonoBehaviour
         while (elapsed < skillDuration)
         {
             FireInMultipleDirections();
-            witch.RestoreArmor(armorRestorePerBurst);
+            player.RestoreArmor(armorRestorePerBurst);
 
             yield return new WaitForSeconds(skillFireInterval);
             elapsed += skillFireInterval;

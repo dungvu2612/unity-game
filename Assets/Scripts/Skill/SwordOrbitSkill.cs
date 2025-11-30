@@ -23,12 +23,12 @@ public class KnightSwordOrbitSkill : MonoBehaviour
     private bool isCastingSkill = false;
 
     private AudioSource knightAudioSource;
-    private Knight knight;   // tham chiếu tới Knight (Player con)
+    private Player player;   
 
     private void Awake()
     {
-        knight = GetComponent<Knight>();
-        if (knight == null)
+        player = GetComponent<Player>();
+        if (player == null)
         {
             Debug.LogError("[KnightSwordOrbitSkill] Không tìm thấy Knight trên cùng GameObject!");
         }
@@ -41,8 +41,6 @@ public class KnightSwordOrbitSkill : MonoBehaviour
         HandleSkillInput();
     }
 
-    // ================== SKILL LOGIC ==================
-
     private void HandleSkillInput()
     {
         if (Input.GetKeyDown(skillKey) && !isCastingSkill)
@@ -53,7 +51,7 @@ public class KnightSwordOrbitSkill : MonoBehaviour
 
     private void TryCastSkill()
     {
-        if (knight == null) return;
+        if (player == null) return;
 
         // Check cooldown
         if (Time.time < lastSkillTime + skillCooldown)
@@ -62,8 +60,8 @@ public class KnightSwordOrbitSkill : MonoBehaviour
             return;
         }
 
-        // Check mana (dùng TrySpendMana trong Knight)
-        if (!knight.TrySpendMana(skillManaCost))
+        // player mana (dùng TrySpendMana trong Knight)
+        if (!player.TrySpendMana(skillManaCost))
         {
             Debug.Log("Not enough mana for Knight skill!");
             return;
@@ -83,15 +81,15 @@ public class KnightSwordOrbitSkill : MonoBehaviour
 
         isCastingSkill = true;
 
-        // Sound triệu hồi kiếm
+      
         if (knightAudioSource != null && summonSound != null)
         {
             knightAudioSource.PlayOneShot(summonSound);
         }
 
-        // Tạo kiếm xung quanh Knight
+     
         List<GameObject> swords = new List<GameObject>();
-        List<float> angles = new List<float>();   // lưu góc theo radian
+        List<float> angles = new List<float>();  
 
         for (int i = 0; i < swordCount; i++)
         {
@@ -101,11 +99,11 @@ public class KnightSwordOrbitSkill : MonoBehaviour
 
             GameObject sword = Instantiate(swordPrefab, spawnPos, Quaternion.identity);
 
-            // đảm bảo vẽ trên Player / Floor
+         
             SpriteRenderer sr = sword.GetComponent<SpriteRenderer>();
             if (sr != null)
             {
-                sr.sortingLayerName = "Player";    // hoặc "Effect" nếu bạn có
+                sr.sortingLayerName = "Player";    
                 sr.sortingOrder = 10;
             }
 
@@ -125,7 +123,7 @@ public class KnightSwordOrbitSkill : MonoBehaviour
                 GameObject sword = swords[i];
                 if (sword == null) continue;
 
-                // tăng góc theo thời gian => quay quanh Knight
+               
                 angles[i] += orbitAngularSpeed * Mathf.Deg2Rad * Time.deltaTime;
 
                 Vector3 offset = new Vector3(Mathf.Cos(angles[i]), Mathf.Sin(angles[i]), 0f) * orbitRadius;
@@ -140,10 +138,7 @@ public class KnightSwordOrbitSkill : MonoBehaviour
             yield return null;
         }
 
-        // TODO: nếu sau này muốn kiếm phóng ra, ta có thể thêm LaunchPhase ở đây
-
-        // dọn kiếm
-        foreach (var s in swords)
+         foreach (var s in swords)
         {
             if (s != null) Destroy(s);
         }

@@ -4,10 +4,10 @@ using TMPro;
 public class PlayerSpawner : MonoBehaviour
 {
     [Header("Vị trí spawn (object rỗng)")]
-    [SerializeField] private Transform spawnPoint;   // PlayerSpawnPoint
+    [SerializeField] private Transform spawnPoint;   
 
     [Header("Camera Follow Target")]
-    [SerializeField] private Transform cameraFollowTarget;   // CameraFollowTarget (Cinemachine follow cái này)
+    [SerializeField] private Transform cameraFollowTarget;  
 
     [Header("HUD (UI Bars)")]
     [SerializeField] private Image hpBar;
@@ -17,14 +17,14 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoText;
     private void Awake()
     {
-        // Nếu quên gán spawnPoint trong Inspector thì dùng transform hiện tại
+     
         if (spawnPoint == null)
         {
             spawnPoint = transform;
             Debug.Log("[PlayerSpawner] spawnPoint null, dùng transform của PlayerSpawner");
         }
 
-        // Nếu quên gán CameraFollowTarget thì tự tìm theo tên trong scene
+     
         if (cameraFollowTarget == null)
         {
             GameObject go = GameObject.Find("CameraFollowTarget");
@@ -56,7 +56,7 @@ public class PlayerSpawner : MonoBehaviour
             return null;
         }
 
-        // 1. Spawn player làm con của spawnPoint
+      
         GameObject player = Instantiate(
             playerPrefab,
             spawnPoint.position,
@@ -66,7 +66,6 @@ public class PlayerSpawner : MonoBehaviour
 
         Debug.Log("[PlayerSpawner] Đã spawn player: " + player.name);
 
-        // 2. CameraFollowTarget -> làm con của player
         if (cameraFollowTarget != null)
         {
             cameraFollowTarget.SetParent(player.transform);
@@ -79,7 +78,7 @@ public class PlayerSpawner : MonoBehaviour
             Debug.LogWarning("[PlayerSpawner] cameraFollowTarget = NULL trong Spawn!");
         }
 
-        // 3. GÁN UI BARS CHO PLAYER (DÙNG BASE CLASS Player)
+      
         Player playerComp = player.GetComponent<Player>();
 
         if (playerComp != null)

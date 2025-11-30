@@ -5,8 +5,8 @@ public class MeleeWeapon : MonoBehaviour
 {
     [Header("Swing Settings")]
     [SerializeField] private float swingAngle = 90f;
-    [SerializeField] private float swingDuration = 0.12f;
-    [SerializeField] private float attackCooldown = 0.25f;
+    [SerializeField] private float swingTime = 0.12f;
+    [SerializeField] private float attackDelay = 0.25f;
 
     [Header("Hit Settings")]
     [SerializeField] private Transform attackOrigin;
@@ -39,10 +39,10 @@ public class MeleeWeapon : MonoBehaviour
         }
     }
 
-    // ⭐ LUÔN xoay kiếm hướng đến con trỏ chuột
+  
     private void RotateTowardMouse()
     {
-        if (isSwinging) return;  // khi đang vung, KHÔNG cập nhật hướng chuột
+        if (isSwinging) return;  
 
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 dir = mouse - transform.position;
@@ -52,20 +52,20 @@ public class MeleeWeapon : MonoBehaviour
         transform.rotation = normalRotation;
     }
 
-    // ⭐ Vung kiếm theo hướng chuột
+  
     private IEnumerator SwingCoroutine()
     {
         isSwinging = true;
         hasHit = false;
-        nextAttackTime = Time.time + attackCooldown;
+        nextAttackTime = Time.time + attackDelay;
 
-        // góc hiện tại (đang hướng theo chuột)
+        
         Quaternion startRot = normalRotation;
 
-        // vung 90° theo hướng chuột
+      
         Quaternion endRot = startRot * Quaternion.Euler(0, 0, -swingAngle);
 
-        // tiếng chém
+    
         if (audioSource != null && swingSFX != null)
             audioSource.PlayOneShot(swingSFX);
 
@@ -73,12 +73,12 @@ public class MeleeWeapon : MonoBehaviour
 
         while (t < 1f)
         {
-            t += Time.deltaTime / swingDuration;
+            t += Time.deltaTime / swingTime;
             float lerpT = Mathf.Clamp01(t);
 
             transform.rotation = Quaternion.Slerp(startRot, endRot, lerpT);
 
-            // hit enemy giữa nhát chém
+        
             if (!hasHit && lerpT >= 0.5f)
             {
                 PerformHit();
@@ -88,7 +88,7 @@ public class MeleeWeapon : MonoBehaviour
             yield return null;
         }
 
-        // trả về hướng chuột
+       
         transform.rotation = normalRotation;
 
         isSwinging = false;
@@ -105,10 +105,9 @@ public class MeleeWeapon : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            // Thử lấy Enemy trên chính object
             Enemy enemy = hit.GetComponent<Enemy>();
 
-            // Nếu không có, thử lấy trên cha (trường hợp collider nằm ở child)
+           
             if (enemy == null)
             {
                 enemy = hit.GetComponentInParent<Enemy>();

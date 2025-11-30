@@ -180,5 +180,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WandBullet
   moveSpeed: 25
   timeDestroy: 1
-  damage: 10
+  damage: 20
   bloodPrefabs: {fileID: 5941379105891344055, guid: 66e6dc94d9bd4924d8d7e7968140bf2a, type: 3}

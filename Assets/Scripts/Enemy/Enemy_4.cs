@@ -2,36 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_4 : Enemy
+public class EnemyOrbitFireballSkill : MonoBehaviour
 {
     [Header("Fireball Settings")]
     [SerializeField] private GameObject fireballPrefab;
-    [SerializeField] private int fireballCount = 4;      // 4 slot
-    [SerializeField] private float orbitRadius = 3f;     // chỉnh rộng ở đây
+    [SerializeField] private int fireballCount = 4;      // số quả pháp cầu orbit
+    [SerializeField] private float orbitRadius = 3f;     // bán kính quay
     [SerializeField] private float orbitSpeed = 40f;
     [SerializeField] private float fireballMoveSpeed = 10f;
     [SerializeField] private float fireballDamage = 30f;
 
     [Header("Attack Logic")]
-    [SerializeField] private float attackCooldown = 1f;  // 2s bắn 1 quả
-    [SerializeField] private float respawnDelay = 2f;    // 1s sau sinh lại 1 quả
+    [SerializeField] private float attackCooldown = 1f;  // thời gian giữa các lần bắn
+    [SerializeField] private float respawnDelay = 2f;    // delay sinh lại quả mới
 
     private readonly List<OrbitingFireball> fireballs = new();
 
-    private float[] slotAngles;     // góc của từng slot
-    private bool[] slotOccupied;   // slot đang có fireball hay chưa
+    private float[] slotAngles;
+    private bool[] slotOccupied;
 
     private float attackTimer;
 
-    protected override void Start()
+    private Enemy enemy;     // tham chiếu Enemy chung
+    private Player player;   // target
+
+    private void Awake()
     {
-        base.Start();
+        enemy = GetComponent<Enemy>();
+        if (enemy == null)
+        {
+            Debug.LogError("[EnemyOrbitFireballSkill] Không tìm thấy Enemy trên GameObject!");
+            return;
+        }
+
+        // đăng ký khi Enemy chết thì dọn fireball
+        enemy.OnDeath += HandleEnemyDeath;
+    }
+
+    private void Start()
+    {
+        if (enemy == null) return;
+
+        // lấy player từ Enemy
+        player = enemy.TargetPlayer;
+        if (player == null)
+        {
+            player = FindAnyObjectByType<Player>();
+        }
 
         // khởi tạo slot
         slotAngles = new float[fireballCount];
         slotOccupied = new bool[fireballCount];
 
-        float step = 360f / fireballCount;      // 4 → 0,90,180,270
+        float step = 360f / fireballCount;
         for (int i = 0; i < fireballCount; i++)
         {
             slotAngles[i] = step * i;
@@ -41,11 +64,9 @@ public class Enemy_4 : Enemy
         SpawnInitialFireballs();
     }
 
-    protected override void FixedUpdate()
+    private void FixedUpdate()
     {
-        base.FixedUpdate(); // vẫn giữ logic đuổi player nếu có
-
-        if (player == null) return;
+        if (enemy == null || player == null) return;
 
         attackTimer -= Time.fixedDeltaTime;
 
@@ -56,7 +77,7 @@ public class Enemy_4 : Enemy
         }
     }
 
-    // --- SPAWN BAN ĐẦU: chiếm hết 4 slot ---
+    // ==== Spawn ban đầu: chiếm hết các slot ====
     private void SpawnInitialFireballs()
     {
         fireballs.Clear();
@@ -67,17 +88,16 @@ public class Enemy_4 : Enemy
         }
     }
 
-    // spawn 1 quả cụ thể vào slotIndex (0..3)
     private void SpawnFireballInSlot(int slotIndex)
     {
         if (fireballPrefab == null) return;
-        if (slotOccupied[slotIndex]) return;   // slot đang bận
+        if (slotOccupied[slotIndex]) return;
 
         GameObject fbObj = Instantiate(
             fireballPrefab,
             transform.position,
             Quaternion.identity,
-            transform
+            transform   // quay quanh chính Enemy
         );
 
         OrbitingFireball orb = fbObj.GetComponent<OrbitingFireball>();
@@ -97,9 +117,13 @@ public class Enemy_4 : Enemy
 
             fireballs.Add(orb);
         }
+        else
+        {
+            Debug.LogWarning("[EnemyOrbitFireballSkill] Fireball không có OrbitingFireball component!");
+        }
     }
 
-    // --- BẮN 1 QUẢ ---
+    // ==== Bắn 1 quả về phía Player ====
     private void ShootOneFireballAtPlayer()
     {
         if (player == null) return;
@@ -108,7 +132,6 @@ public class Enemy_4 : Enemy
 
         OrbitingFireball chosen = null;
 
-        // tìm 1 quả đang orbit
         foreach (var fb in fireballs)
         {
             if (fb != null && fb.IsOrbiting)
@@ -122,16 +145,11 @@ public class Enemy_4 : Enemy
 
         int slotIndex = chosen.SlotIndex;
 
-        // bắn
         chosen.ShootAt(targetPos);
 
-        // slot này trống
         slotOccupied[slotIndex] = false;
-
-        // xóa khỏi list (nó tự Destroy sau explosion)
         fireballs.Remove(chosen);
 
-        // sau 1s sinh lại 1 quả ngay slot trống đó
         StartCoroutine(RespawnOneFireball(slotIndex));
     }
 
@@ -141,7 +159,8 @@ public class Enemy_4 : Enemy
         SpawnFireballInSlot(slotIndex);
     }
 
-    protected override void Die()
+    // Enemy chết → dọn fireball
+    private void HandleEnemyDeath()
     {
         foreach (var fb in fireballs)
         {
@@ -149,7 +168,13 @@ public class Enemy_4 : Enemy
                 Destroy(fb.gameObject);
         }
         fireballs.Clear();
+    }
 
-        base.Die();
+    private void OnDestroy()
+    {
+        if (enemy != null)
+        {
+            enemy.OnDeath -= HandleEnemyDeath;
+        }
     }
 }

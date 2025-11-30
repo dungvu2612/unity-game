@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   swingAngle: 120
-  swingDuration: 0.1
-  attackCooldown: 0.1
+  swingTime: 0.12
+  attackDelay: 0.25
   attackOrigin: {fileID: 5970538547570084743}
   attackRadius: 2
   enemyLayer:
@@ -257,9 +257,10 @@ GameObject:
   - component: {fileID: 6008751089044818175}
   - component: {fileID: 908503247976798656}
   - component: {fileID: 3864924653426904005}
-  - component: {fileID: 7661765345954506350}
   - component: {fileID: 7354935678033787022}
   - component: {fileID: 4741382289748645361}
+  - component: {fileID: -8906158442348719850}
+  - component: {fileID: -7224709710647329414}
   m_Layer: 9
   m_Name: Knight
   m_TagString: Player
@@ -465,30 +466,6 @@ MonoBehaviour:
   SP: 30
   MP: 50
   gameplayPrefab: {fileID: 3652686414056317573}
---- !u!114 &7661765345954506350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3652686414056317573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acdc8b764979f2244af5292ef9db8cb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  moveSpeed: 10
-  maxHP: 100
-  maxArmor: 50
-  maxMana: 100
-  hpBar: {fileID: 0}
-  armorBar: {fileID: 0}
-  manaBar: {fileID: 0}
-  footstepSFX: {fileID: 0}
-  footstepInterval: 0.25
-  buffPickupSFX: {fileID: 0}
-  hitSFX: {fileID: 0}
-  deathSFX: {fileID: 0}
 --- !u!82 &7354935678033787022
 AudioSource:
   m_ObjectHideFlags: 0
@@ -607,3 +584,39 @@ MonoBehaviour:
   orbitDuration: 5
   orbitAngularSpeed: 360
   summonSound: {fileID: 0}
+--- !u!114 &-8906158442348719850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652686414056317573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16ccdb35668b3c479d3933887620987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  maxHP: 2
+  maxArmor: 50
+  maxMana: 70
+  hpBar: {fileID: 0}
+  armorBar: {fileID: 0}
+  manaBar: {fileID: 0}
+  buffPickupSFX: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
+  hitSFX: {fileID: 0}
+  deathSFX: {fileID: 0}
+--- !u!114 &-7224709710647329414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652686414056317573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a736b29c93e4054f9ef3c3f88a54f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  moveSpeed: 15
+  footstepSFX: {fileID: 8300000, guid: df7087e4d8a8bb546bc08ce68632903f, type: 3}
+  footstepInterval: 0.25

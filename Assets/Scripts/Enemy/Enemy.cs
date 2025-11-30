@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;   
-public abstract class Enemy : MonoBehaviour
+using System;
+
+public class Enemy : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] protected float maxHP = 100f;
@@ -12,13 +13,18 @@ public abstract class Enemy : MonoBehaviour
     protected Player player;
     protected Rigidbody2D rb;
     public event Action OnDeath;
+
     [Header("Loot Settings")]
     [SerializeField] private GameObject manaPickupPrefab;
     [SerializeField] private GameObject hpPickupPrefab;
     [SerializeField] private GameObject speedPickupPrefab;
+
     [Header("IconSkull")]
     [SerializeField] private GameObject deathIconPrefab;
-    [SerializeField] private float deathIconDuration = 5f; 
+    [SerializeField] private float deathIconDuration = 5f;
+
+    // 👉 Cho script khác đọc Player
+    public Player TargetPlayer => player;
 
     protected virtual void Awake()
     {
@@ -31,6 +37,7 @@ public abstract class Enemy : MonoBehaviour
         currentHP = maxHP;
         UpdateHpBar();
     }
+
     protected virtual void Update() { }
 
     protected virtual void FixedUpdate()
@@ -82,10 +89,9 @@ public abstract class Enemy : MonoBehaviour
     {
         if (deathIconPrefab == null) return;
 
-      
         GameObject icon = Instantiate(
             deathIconPrefab,
-            transform.position + new Vector3(0, 1f, 0), 
+            transform.position + new Vector3(0, 1f, 0),
             Quaternion.identity
         );
 
@@ -97,35 +103,29 @@ public abstract class Enemy : MonoBehaviour
         DropLoot();
         ShowDeathIcon();
 
-       
-        OnDeath?.Invoke();
+        OnDeath?.Invoke();   // 👉 báo cho skill, v.v.
 
         Destroy(gameObject);
     }
+
     protected virtual void DropLoot()
     {
         float roll = UnityEngine.Random.value;
 
-
-        // 20% Mana
         if (roll < 0.20f)
         {
             if (manaPickupPrefab != null)
                 Instantiate(manaPickupPrefab, transform.position, Quaternion.identity);
         }
-
         else if (roll < 0.30f)
         {
             if (hpPickupPrefab != null)
                 Instantiate(hpPickupPrefab, transform.position, Quaternion.identity);
         }
-
         else if (roll < 0.50f)
         {
             if (speedPickupPrefab != null)
                 Instantiate(speedPickupPrefab, transform.position, Quaternion.identity);
         }
-
     }
 }
-
