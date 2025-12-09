@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8761443338032565029}
   - component: {fileID: 3302280723249691784}
   m_Layer: 0
-  m_Name: Explosion_0 (1)
+  m_Name: GiantBulletSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
