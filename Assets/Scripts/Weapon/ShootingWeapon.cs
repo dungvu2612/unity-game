@@ -7,8 +7,8 @@ public class WitchWeapon : MonoBehaviour
     [Header("Aim")]
     [SerializeField] private float rotationOffset = -90f;      // offset vì sprite súng mặc định quay lên
     [SerializeField] private float bulletRotationOffset = 0f;  // offset cho đạn
-    [SerializeField] private SpriteRenderer gunSprite;         // SpriteRenderer của khẩu súng
-    [SerializeField] private bool enableFlip = true;           // <--- ô tick trong Inspector
+    [SerializeField] private SpriteRenderer gunSprite;         
+    [SerializeField] private bool enableFlip = true;        
 
     [Header("Shoot")]
     [SerializeField] private Transform firePos;

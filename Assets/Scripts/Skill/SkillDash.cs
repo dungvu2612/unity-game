@@ -4,13 +4,14 @@ using UnityEngine;
 public class SkillDash : MonoBehaviour
 {
     [Header("Dash Settings")]
-    public float dashDistance = 4f;          // quãng đường tốc biến
-    public float dashDuration = 0.12f;       // thời gian dash
-    public float cooldown = 1.5f;            // hồi chiêu
-    public float dashManaCost = 15f;         // mana tiêu tốn
+    public float dashDistance = 4f;
+    public float dashDuration = 0.12f;
+    public float cooldown = 1.5f;
+    public float dashManaCost = 15f;
 
     [Header("Invincibility")]
     public bool invincibleDuringDash = true;
+    [Tooltip("Các layer muốn bỏ va chạm tạm thời (Enemy, EnemyBullet, v.v.)")]
     public LayerMask ignoreCollisionLayer;
 
     [Header("Sound")]
@@ -22,14 +23,16 @@ public class SkillDash : MonoBehaviour
     private Rigidbody2D rb;
     private Player player;
     private AudioSource audioSource;
-    private Collider2D playerCollider;
+
+    int playerLayer;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GetComponent<Player>();
         audioSource = GetComponent<AudioSource>();
-        playerCollider = GetComponent<Collider2D>();
+
+        playerLayer = gameObject.layer;
     }
 
     private void Update()
@@ -67,9 +70,9 @@ public class SkillDash : MonoBehaviour
 
         float t = 0f;
 
-        // Tắt va chạm nếu bật invincible
-        if (invincibleDuringDash && playerCollider != null)
-            playerCollider.enabled = false;
+        // 🔹 Bỏ va chạm với các layer trong ignoreCollisionLayer (không đụng tới tường)
+        if (invincibleDuringDash)
+            SetIgnoreLayers(true);
 
         while (t < dashDuration)
         {
@@ -79,14 +82,28 @@ public class SkillDash : MonoBehaviour
             yield return null;
         }
 
-        // Bật lại va chạm
-        if (invincibleDuringDash && playerCollider != null)
-            playerCollider.enabled = true;
+        // 🔹 Bật lại va chạm bình thường
+        if (invincibleDuringDash)
+            SetIgnoreLayers(false);
 
         isDashing = false;
     }
 
-    // Dash theo hướng di chuyển nếu có, còn không thì dash theo hướng chuột
+    // Bật / tắt IgnoreCollision giữa PlayerLayer và các layer trong ignoreCollisionLayer
+    private void SetIgnoreLayers(bool ignore)
+    {
+        int mask = ignoreCollisionLayer.value;
+
+        for (int layer = 0; layer < 32; layer++)
+        {
+            if ((mask & (1 << layer)) != 0)
+            {
+                Physics2D.IgnoreLayerCollision(playerLayer, layer, ignore);
+            }
+        }
+    }
+
+    // Dash theo hướng di chuyển, nếu đứng yên thì dash theo hướng chuột
     private Vector2 GetDashDirection()
     {
         Vector2 moveInput = new Vector2(
@@ -97,10 +114,8 @@ public class SkillDash : MonoBehaviour
         if (moveInput.sqrMagnitude > 0.1f)
             return moveInput;
 
-        // Nếu không di chuyển, dash theo hướng chuột
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 dir = (mouse - transform.position).normalized;
-
         return dir;
     }
 }

@@ -640,5 +640,5 @@ MonoBehaviour:
   invincibleDuringDash: 1
   ignoreCollisionLayer:
     serializedVersion: 2
-    m_Bits: 0
-  dashSFX: {fileID: 0}
+    m_Bits: 256
+  dashSFX: {fileID: 8300000, guid: c91fcf414acc0344cb03b13996f1bf3b, type: 3}

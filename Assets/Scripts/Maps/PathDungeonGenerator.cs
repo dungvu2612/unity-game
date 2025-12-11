@@ -6,18 +6,26 @@ public class PathDungeonGenerator : MonoBehaviour
 {
     [Header("Room Settings")]
     public GameObject roomPrefab;
-    public int roomCount = 7;
+
+    [Tooltip("Số phòng tối thiểu muốn tạo")]
+    public int minRoomCount = 5;
+
+    [Tooltip("Số phòng tối đa muốn tạo")]
+    public int maxRoomCount = 10;
+
+   
+    private int roomCount;
 
     [Header("Grid Settings")]
-    public bool autoDetectRoomSize = true;   
-    public int roomWidth = 20;              
-    public int roomHeight = 20;             
+ 
+    public int roomWidth = 85;
+    public int roomHeight = 85;
 
     [Header("Boss Settings")]
-    public GameObject bossPrefab;   
+    public GameObject bossPrefab;
 
     [Header("Enemy Scaling")]
-    public int baseEnemyCount = 5;         
+    public int baseEnemyCount = 5;          
     public int enemyIncrementPerRoom = 3;  
 
     Dictionary<Vector2Int, Room> rooms = new Dictionary<Vector2Int, Room>();
@@ -26,36 +34,34 @@ public class PathDungeonGenerator : MonoBehaviour
 
     void Start()
     {
+        // 1) Tính kích thước room
         CalculateRoomSize();
+
+        // 2) Random số phòng trong khoảng [min, max]
+        roomCount = GetRandomRoomCount();
+
+        Debug.Log($"[PathDungeonGenerator] Generate dungeon với {roomCount} rooms");
+
+        // 3) Generate
         GenerateDungeon();
+    }
+
+    int GetRandomRoomCount()
+    {
+        // Đảm bảo min <= max và >= 1
+        int min = Mathf.Max(1, minRoomCount);
+        int max = Mathf.Max(min, maxRoomCount);
+
+        // Random.Range với int: max là exclusive → +1
+        return Random.Range(min, max + 1);
     }
 
     void CalculateRoomSize()
     {
-     
-        if (!autoDetectRoomSize)
-        {
-            if (roomWidth == 0) roomWidth = 1;
-            if (roomHeight == 0) roomHeight = 1;
-            return;
-        }
+        if (roomWidth <= 0) roomWidth = 1;
+        if (roomHeight <= 0) roomHeight = 1;
 
-        if (roomPrefab == null)
-        {
-            Debug.LogError("PathDungeonGenerator: Chưa gán roomPrefab!");
-            return;
-        }
-
-        Tilemap tilemap = roomPrefab.GetComponentInChildren<Tilemap>();
-        if (tilemap == null)
-        {
-            Debug.LogError("PathDungeonGenerator: Không tìm thấy Tilemap trong RoomPrefab!");
-            return;
-        }
-
-        var size = tilemap.cellBounds.size;
-        roomWidth = size.x;
-        roomHeight = size.y;
+        Debug.Log($"[PathDungeonGenerator] RoomSize = {roomWidth} x {roomHeight}");
     }
 
     void GenerateDungeon()
@@ -67,10 +73,9 @@ public class PathDungeonGenerator : MonoBehaviour
 
         // Phòng start là phòng thứ 0 trên đường đi
         ConfigureMonsterSpawnerForPathIndex(startRoom, 0);
-
         lastRoom = startRoom;
 
-        // spawner phòng start (nếu có) – vẫn để spawnOnStart false, chỉ spawn khi player bước vào
+        // spawner phòng start – chỉ spawn khi player bước vào
         MonsterSpawner startSpawner = startRoom.GetComponentInChildren<MonsterSpawner>();
         if (startSpawner != null)
         {
@@ -113,7 +118,7 @@ public class PathDungeonGenerator : MonoBehaviour
 
         SetupBossRoom();
 
-   
+        // Phòng đầu mở cửa sẵn
         if (startRoom != null)
             startRoom.OpenAllConnectedDoors();
     }
@@ -132,11 +137,9 @@ public class PathDungeonGenerator : MonoBehaviour
 
     void ConnectRooms(Room a, Room b, Vector2Int dir)
     {
-        // a ---dir---> b
-        a.OpenDoor(dir);          // đánh dấu connected...
+        a.OpenDoor(dir);
         b.OpenDoor(-dir);
 
-        // ...và gán neighbor để đóng/mở cửa 2 phía
         a.SetNeighbor(b, dir);
         b.SetNeighbor(a, -dir);
     }
@@ -172,18 +175,11 @@ public class PathDungeonGenerator : MonoBehaviour
             col.size = new Vector2(roomWidth, roomHeight);
         }
 
-        // Phòng cuối là Boss: chỉ spawn boss, 1 con
         sp.spawnOnStart = false;
         sp.enemyPrefabs = new GameObject[] { bossPrefab };
         sp.enemyCount = 1;
     }
 
-    /// <summary>
-    /// Cấu hình số lượng quái cho phòng dựa trên thứ tự trên đường đi.
-    /// pathIndex = 0 → phòng đầu = 5 quái
-    /// pathIndex = 1 → 5 + 3
-    /// pathIndex = 2 → 5 + 3*2 ...
-    /// </summary>
     void ConfigureMonsterSpawnerForPathIndex(Room room, int pathIndex)
     {
         if (room == null) return;
@@ -191,21 +187,19 @@ public class PathDungeonGenerator : MonoBehaviour
         MonsterSpawner sp = room.GetComponentInChildren<MonsterSpawner>();
         if (sp == null) return;
 
-        // ===== Phòng đầu tiên: KHÔNG có quái =====
+        // Phòng đầu tiên: không có quái
         if (pathIndex == 0)
         {
-            sp.enemyCount = 0;          // không spawn con nào
-            sp.spawnOnStart = false;    // vẫn để false, chỉ spawn khi player bước vào
+            sp.enemyCount = 0;
+            sp.spawnOnStart = false;
             return;
         }
 
-        // ===== Các phòng còn lại: tăng dần số quái =====
+        // Các phòng còn lại: số quái tăng dần
         int count = baseEnemyCount + enemyIncrementPerRoom * pathIndex;
         if (count < 0) count = 0;
 
         sp.enemyCount = count;
         sp.spawnOnStart = false;
     }
-
 }
-
