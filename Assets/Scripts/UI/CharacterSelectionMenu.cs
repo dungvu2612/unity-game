@@ -15,7 +15,7 @@ public class CharacterSelectionMenu : MonoBehaviour
     [SerializeField] private TMP_Text spText;
     [SerializeField] private TMP_Text mpText;
 
-    // ==== Thuộc tính để InSceneMenuManager hỏi xem đang chọn nhân vật nào ====
+    
     public MenuCharacterLink CurrentLink
     {
         get
@@ -34,7 +34,7 @@ public class CharacterSelectionMenu : MonoBehaviour
             Debug.LogError("[CharacterSelectionMenu] Chưa gán charactersParent!");
             return;
         }
-
+        //so luong characters trong panel
         int count = charactersParent.childCount;
         characters = new GameObject[count];
 
@@ -51,7 +51,7 @@ public class CharacterSelectionMenu : MonoBehaviour
         ShowCharacter(currentIndex);
     }
 
-    // ==== Hiển thị đúng 1 nhân vật + update UI ====
+  
     private void ShowCharacter(int index)
     {
         if (characters == null || characters.Length == 0) return;
