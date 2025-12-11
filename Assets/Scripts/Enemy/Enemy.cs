@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject deathIconPrefab;
     [SerializeField] private float deathIconDuration = 5f;
 
-    // 👉 Cho script khác đọc Player
+    // Cho script khác đọc Player
     public Player TargetPlayer => player;
 
     protected virtual void Awake()
@@ -103,7 +103,7 @@ public class Enemy : MonoBehaviour
         DropLoot();
         ShowDeathIcon();
 
-        OnDeath?.Invoke();   // 👉 báo cho skill, v.v.
+        OnDeath?.Invoke();   //báo cho skill, v.v.
 
         Destroy(gameObject);
     }

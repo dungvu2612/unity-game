@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 9062125837766901609}
   - component: {fileID: 7426357604327676008}
   - component: {fileID: 6972799019048187845}
+  - component: {fileID: -7386541011579624154}
   m_Layer: 8
   m_Name: BossEnemy
   m_TagString: Enemy
@@ -243,6 +244,26 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.46745634, y: -0.9074187}
   m_Radius: 4.235188
+--- !u!114 &-7386541011579624154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769460612584866279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47feab0ce872c134b96ba9acb6df8207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyOrbitFireballSkill
+  fireballPrefab: {fileID: 9002011468528987091, guid: e12ada5be09c64c4795aaf58a166a0ac, type: 3}
+  fireballCount: 6
+  orbitRadius: 8
+  orbitSpeed: 60
+  fireballMoveSpeed: 20
+  fireballDamage: 5
+  attackCooldown: 1
+  respawnDelay: 2
 --- !u!1001 &1415286704897373953
 PrefabInstance:
   m_ObjectHideFlags: 0

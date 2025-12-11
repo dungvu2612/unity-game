@@ -19,7 +19,7 @@ public class WandBullet : MonoBehaviour
 
     void MoveBullet()
     {
-        // 🔥 Bay theo hướng transform.right thay vì transform.up
+        // Bay theo hướng transform.right thay vì transform.up
         transform.Translate(transform.right * moveSpeed * Time.deltaTime, Space.World);
     }
 

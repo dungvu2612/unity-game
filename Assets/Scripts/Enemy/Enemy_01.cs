@@ -31,7 +31,7 @@ public class Enemy_01 : Enemy
         // Tính khoảng cách giữa enemy và player
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
-        // Nếu quá xa thì không tấn công
+   
         if (distance > attackDistance) return;
 
         // Đếm thời gian hồi chiêu
@@ -39,7 +39,7 @@ public class Enemy_01 : Enemy
 
         if (attackTimer <= 0f)
         {
-            // Gây damage
+            
             player.TakeDamage(touchDamage);
 
             // Reset hồi chiêu

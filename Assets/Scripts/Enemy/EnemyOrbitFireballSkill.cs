@@ -6,15 +6,17 @@ public class EnemyOrbitFireballSkill : MonoBehaviour
 {
     [Header("Fireball Settings")]
     [SerializeField] private GameObject fireballPrefab;
-    [SerializeField] private int fireballCount = 4;      // số quả pháp cầu orbit
-    [SerializeField] private float orbitRadius = 3f;     // bán kính quay
+    [SerializeField] private int fireballCount = 4;
+    [SerializeField] private float orbitRadius = 3f;
     [SerializeField] private float orbitSpeed = 40f;
+
+    // === 2 biến QUAN TRỌNG: DAMAGE + SPEED ===
     [SerializeField] private float fireballMoveSpeed = 10f;
     [SerializeField] private float fireballDamage = 30f;
 
     [Header("Attack Logic")]
-    [SerializeField] private float attackCooldown = 1f;  // thời gian giữa các lần bắn
-    [SerializeField] private float respawnDelay = 2f;    // delay sinh lại quả mới
+    [SerializeField] private float attackCooldown = 1f;
+    [SerializeField] private float respawnDelay = 2f;
 
     private readonly List<OrbitingFireball> fireballs = new();
 
@@ -23,19 +25,18 @@ public class EnemyOrbitFireballSkill : MonoBehaviour
 
     private float attackTimer;
 
-    private Enemy enemy;     // tham chiếu Enemy chung
-    private Player player;   // target
+    private Enemy enemy;
+    private Player player;
 
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
         if (enemy == null)
         {
-            Debug.LogError("[EnemyOrbitFireballSkill] Không tìm thấy Enemy trên GameObject!");
+            Debug.LogError("[EnemyOrbitFireballSkill] Missing Enemy component!");
             return;
         }
 
-        // đăng ký khi Enemy chết thì dọn fireball
         enemy.OnDeath += HandleEnemyDeath;
     }
 
@@ -43,14 +44,10 @@ public class EnemyOrbitFireballSkill : MonoBehaviour
     {
         if (enemy == null) return;
 
-        // lấy player từ Enemy
         player = enemy.TargetPlayer;
         if (player == null)
-        {
             player = FindAnyObjectByType<Player>();
-        }
 
-        // khởi tạo slot
         slotAngles = new float[fireballCount];
         slotOccupied = new bool[fireballCount];
 
@@ -66,8 +63,6 @@ public class EnemyOrbitFireballSkill : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemy == null || player == null) return;
-
         attackTimer -= Time.fixedDeltaTime;
 
         if (attackTimer <= 0f)
@@ -77,40 +72,37 @@ public class EnemyOrbitFireballSkill : MonoBehaviour
         }
     }
 
-    // ==== Spawn ban đầu: chiếm hết các slot ====
     private void SpawnInitialFireballs()
     {
         fireballs.Clear();
 
         for (int i = 0; i < fireballCount; i++)
-        {
             SpawnFireballInSlot(i);
-        }
     }
 
     private void SpawnFireballInSlot(int slotIndex)
     {
-        if (fireballPrefab == null) return;
-        if (slotOccupied[slotIndex]) return;
+        if (fireballPrefab == null || slotOccupied[slotIndex])
+            return;
 
         GameObject fbObj = Instantiate(
             fireballPrefab,
             transform.position,
             Quaternion.identity,
-            transform   // quay quanh chính Enemy
+            transform
         );
 
         OrbitingFireball orb = fbObj.GetComponent<OrbitingFireball>();
         if (orb != null)
         {
-            float angleDeg = slotAngles[slotIndex];
-
-            orb.Init(transform,
-                     angleDeg,
-                     orbitRadius,
-                     orbitSpeed,
-                     fireballMoveSpeed,
-                     fireballDamage);
+            orb.InitOrbit(
+                transform,
+                slotAngles[slotIndex],
+                orbitRadius,
+                orbitSpeed,
+                fireballMoveSpeed,
+                fireballDamage
+            );
 
             orb.SlotIndex = slotIndex;
             slotOccupied[slotIndex] = true;
@@ -119,16 +111,13 @@ public class EnemyOrbitFireballSkill : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("[EnemyOrbitFireballSkill] Fireball không có OrbitingFireball component!");
+            Debug.LogWarning("[EnemyOrbitFireballSkill] Fireball missing OrbitingFireball script!");
         }
     }
 
-    // ==== Bắn 1 quả về phía Player ====
     private void ShootOneFireballAtPlayer()
     {
         if (player == null) return;
-
-        Vector2 targetPos = player.transform.position;
 
         OrbitingFireball chosen = null;
 
@@ -145,8 +134,7 @@ public class EnemyOrbitFireballSkill : MonoBehaviour
 
         int slotIndex = chosen.SlotIndex;
 
-        chosen.ShootAt(targetPos);
-
+        chosen.ShootAt(player.transform.position);
         slotOccupied[slotIndex] = false;
         fireballs.Remove(chosen);
 
@@ -159,7 +147,6 @@ public class EnemyOrbitFireballSkill : MonoBehaviour
         SpawnFireballInSlot(slotIndex);
     }
 
-    // Enemy chết → dọn fireball
     private void HandleEnemyDeath()
     {
         foreach (var fb in fireballs)
@@ -173,8 +160,6 @@ public class EnemyOrbitFireballSkill : MonoBehaviour
     private void OnDestroy()
     {
         if (enemy != null)
-        {
             enemy.OnDeath -= HandleEnemyDeath;
-        }
     }
 }

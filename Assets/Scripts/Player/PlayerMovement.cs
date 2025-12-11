@@ -19,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private AudioSource audioSource;
 
     private float nextFootstepTime = 0f;
-
+    private float baseMoveSpeed;
+    private Coroutine speedBuffCoroutine;
     public int OtherDirection { get; private set; } = 1;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        baseMoveSpeed = moveSpeed;
     }
 
     private void Update()
@@ -84,16 +86,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // ==== Buff tốc chạy trong 1 khoảng thời gian ====
+   
     public void AddSpeedBuff(float bonusSpeed, float duration)
     {
-        StartCoroutine(SpeedBuffRoutine(bonusSpeed, duration));
+        if (speedBuffCoroutine != null)
+        {
+            StopCoroutine(speedBuffCoroutine);
+            moveSpeed = baseMoveSpeed;
+        }
+
+        speedBuffCoroutine = StartCoroutine(SpeedBuffRoutine(bonusSpeed, duration));
     }
 
     private System.Collections.IEnumerator SpeedBuffRoutine(float bonusSpeed, float duration)
     {
-        moveSpeed += bonusSpeed;
+        moveSpeed = baseMoveSpeed + bonusSpeed;
         yield return new WaitForSeconds(duration);
-        moveSpeed -= bonusSpeed;
+        moveSpeed = baseMoveSpeed;
+        speedBuffCoroutine = null;
     }
+
 }

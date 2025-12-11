@@ -3,50 +3,50 @@
 public class OrbitingFireball : MonoBehaviour
 {
     [Header("Orbit Settings")]
-    [SerializeField] private float orbitRadius = 3f;     // có thể chỉnh trong Enemy_4 thay
+    [SerializeField] private float orbitRadius = 3f;
     [SerializeField] private float orbitSpeed = 40f;
 
-    [Header("Attack Settings")]
-    [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float damage = 30f;
+    [Header("Lifetime")]
     [SerializeField] private float lifeAfterShot = 3f;
     [SerializeField] private float explosionDuration = 0.4f;
 
     private Transform center;
     private float angleDeg;
-    private bool isOrbiting = true;
 
-    private Animator anim;
+    private float moveSpeed;   // được truyền từ skill
+    private float damage;      // được truyền từ skill
+
+    private bool isOrbiting = true;
+    public bool IsOrbiting => isOrbiting;
+
     private Rigidbody2D rb;
+    private Animator anim;
     private Collider2D col;
 
-    // 🔴 CÁI NÀY LÀ MỚI: Enemy_4 dùng để biết quả này thuộc slot nào
     public int SlotIndex { get; set; }
-
-    public bool IsOrbiting => isOrbiting;
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         col = GetComponent<Collider2D>();
     }
 
-    public void Init(Transform center,
-                     float startAngleDeg,
-                     float orbitRadius,
-                     float orbitSpeed,
-                     float moveSpeed,
-                     float damage)
+    // === Skill truyền TẤT CẢ tham số vào đây ===
+    public void InitOrbit(
+        Transform center,
+        float startAngleDeg,
+        float orbitRadius,
+        float orbitSpeed,
+        float moveSpeed,
+        float damage)
     {
         this.center = center;
-        this.angleDeg = startAngleDeg;  // độ
+        this.angleDeg = startAngleDeg;
         this.orbitRadius = orbitRadius;
         this.orbitSpeed = orbitSpeed;
         this.moveSpeed = moveSpeed;
         this.damage = damage;
-
-        //UpdateOrbitPosition();
     }
 
     private void Update()
@@ -67,6 +67,7 @@ public class OrbitingFireball : MonoBehaviour
 
         float rad = angleDeg * Mathf.Deg2Rad;
         Vector2 offset = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad)) * orbitRadius;
+
         transform.position = (Vector2)center.position + offset;
     }
 
@@ -78,6 +79,7 @@ public class OrbitingFireball : MonoBehaviour
         transform.SetParent(null);
 
         Vector2 dir = (targetPos - (Vector2)transform.position).normalized;
+
         rb.linearVelocity = dir * moveSpeed;
 
         if (anim != null)
@@ -111,7 +113,7 @@ public class OrbitingFireball : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Player p = collision.GetComponent<Player>()
-                     ?? collision.GetComponentInParent<Player>();
+                       ?? collision.GetComponentInParent<Player>();
 
             if (p != null)
                 p.TakeDamage(damage);

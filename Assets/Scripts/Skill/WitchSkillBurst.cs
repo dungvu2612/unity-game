@@ -4,8 +4,8 @@ using UnityEngine;
 public class WitchSkillBurst : MonoBehaviour
 {
     [Header("Witch Skill Settings")]
-    [SerializeField] private GameObject skillBulletPrefab;   // prefab đạn SKILL (khác đạn thường)
-    [SerializeField] private Transform firePoint;            // vị trí bắn skill
+    [SerializeField] private GameObject skillBulletPrefab;   
+    [SerializeField] private Transform firePoint;          
 
     [SerializeField] private KeyCode skillKey = KeyCode.Space;
 
@@ -29,7 +29,7 @@ public class WitchSkillBurst : MonoBehaviour
 
     private void Awake()
     {
-        // lấy Player trên chính object này, nếu không có thì thử trên cha
+        
         player = GetComponent<Player>();
         if (player == null)
         {

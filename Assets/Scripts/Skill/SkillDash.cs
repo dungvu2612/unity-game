@@ -46,7 +46,7 @@ public class SkillDash : MonoBehaviour
         if (Time.time < lastDashTime + cooldown) return;
         if (isDashing) return;
 
-        // Nếu Player không đủ mana → hủy skill
+        // Nếu Player không đủ mana → hủy skilld
         if (!player.TrySpendMana(dashManaCost))
         {
             Debug.Log("Not enough mana to Dash!");

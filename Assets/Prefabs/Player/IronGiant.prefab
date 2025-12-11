@@ -230,7 +230,6 @@ GameObject:
   - component: {fileID: 8358414237953869942}
   - component: {fileID: 967160817893008476}
   - component: {fileID: 3796352453090654698}
-  - component: {fileID: -3710617397679129128}
   - component: {fileID: 7721765908684164114}
   - component: {fileID: 3426412874019435037}
   - component: {fileID: -7129218148768185566}
@@ -424,23 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f304b16698dee4bb3842fca26c2f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCollision
---- !u!114 &-3710617397679129128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4882020774271422029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee8a55c7593253498d60a941ea8401b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuCharacterStats
-  characterName: Iron Giant
-  HP: 150
-  SP: 50
-  MP: 50
-  gameplayPrefab: {fileID: 4882020774271422029}
 --- !u!114 &7721765908684164114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,9 +435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16ccdb35668b3c479d3933887620987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  characterName: IronGiant
   maxHP: 200
-  maxArmor: 50
-  maxMana: 100
+  maxArmor: 100
+  maxMana: 120
   hpBar: {fileID: 0}
   armorBar: {fileID: 0}
   manaBar: {fileID: 0}
@@ -571,7 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a736b29c93e4054f9ef3c3f88a54f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 15
+  moveSpeed: 20
   footstepSFX: {fileID: 0}
   footstepInterval: 0.25
 --- !u!114 &4985757737617661847

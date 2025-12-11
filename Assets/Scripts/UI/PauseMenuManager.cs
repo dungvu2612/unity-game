@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenuRoot;  
     [SerializeField] private GameObject gameOverRoot;   
     [SerializeField] private GameObject winRoot;
+    [Header("Summary UI")]
+    [SerializeField] private TMP_Text timePlayedText;
     public static PauseMenuManager Instance { get; private set; }
     private void Awake()
     {
@@ -16,7 +19,6 @@ public class PauseMenuManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
-    // ========== NÚT PAUSE TRÊN HUD ==========
     public void OnPauseButtonClicked()
     {
         // Dừng game
@@ -27,7 +29,7 @@ public class PauseMenuManager : MonoBehaviour
         if (hudRoot != null) hudRoot.SetActive(false);
     }
 
-    // ========== NÚT RESUME TRÊN MÀN PAUSE ==========
+    
     public void OnResumeButtonClicked()
     {
         // Chạy lại game
@@ -38,14 +40,12 @@ public class PauseMenuManager : MonoBehaviour
         if (hudRoot != null) hudRoot.SetActive(true);
     }
 
-    // ========== NÚT RETRY (PAUSE HOẶC GAMEOVER) ==========
     public void OnRetryButtonClicked()
     {
         Time.timeScale = 1f;
         Scene current = SceneManager.GetActiveScene();
         SceneManager.LoadScene(current.name);
     }
-    // ========== NÚT QUIT ==========
     public void OnQuitButtonClicked()
     {
 #if UNITY_EDITOR
@@ -55,9 +55,11 @@ public class PauseMenuManager : MonoBehaviour
 #endif
     }
 
-    // ========== HÀM GỌI KHI PLAYER CHẾT (GAME OVER) ==========
+   
     public void ShowGameOver()
     {
+        UpdateTimePlayedText();
+
         Time.timeScale = 0f;
             
         if (hudRoot != null) hudRoot.SetActive(false);
@@ -66,6 +68,7 @@ public class PauseMenuManager : MonoBehaviour
     }
     public void ShowWinScreen()
     {
+        UpdateTimePlayedText(); 
         Time.timeScale = 0f;
 
         if (hudRoot != null) hudRoot.SetActive(false);
@@ -73,5 +76,19 @@ public class PauseMenuManager : MonoBehaviour
         if (gameOverRoot != null) gameOverRoot.SetActive(false);
         if (winRoot != null) winRoot.SetActive(true);
     }
+    private void UpdateTimePlayedText()
+    {
+        if (timePlayedText == null) return;
+
+        // thời gian đã chơi từ lúc vào scene gameplay
+        float t = Time.timeSinceLevelLoad;
+
+        int minutes = Mathf.FloorToInt(t / 60f);
+        int seconds = Mathf.FloorToInt(t % 60f);
+
+        // format kiểu 01:23
+        timePlayedText.text = $"{minutes:00}:{seconds:00}";
+    }
+
 }
 

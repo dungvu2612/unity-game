@@ -5,16 +5,16 @@ using UnityEngine;
 public class KnightSwordOrbitSkill : MonoBehaviour
 {
     [Header("Knight Skill - Sword Orbit")]
-    [SerializeField] private KeyCode skillKey = KeyCode.Space;      // phím bấm để dùng skill
-    [SerializeField] private float skillManaCost = 30f;              // MP tốn khi dùng skill
-    [SerializeField] private float skillCooldown = 5f;               // thời gian hồi chiêu
+    [SerializeField] private KeyCode skillKey = KeyCode.Space;      
+    [SerializeField] private float skillManaCost = 30f;              
+    [SerializeField] private float skillCooldown = 5f;               
 
     [Header("Orbit Settings")]
-    [SerializeField] private GameObject swordPrefab;                 // prefab kiếm bay quanh người
-    [SerializeField] private int swordCount = 7;                     // số lượng kiếm
-    [SerializeField] private float orbitRadius = 3f;                 // bán kính quỹ đạo
-    [SerializeField] private float orbitDuration = 1.5f;             // kiếm bay quanh bao lâu (giây)
-    [SerializeField] private float orbitAngularSpeed = 360f;         // tốc độ quay (độ/giây)
+    [SerializeField] private GameObject swordPrefab;                
+    [SerializeField] private int swordCount = 7;                     
+    [SerializeField] private float orbitRadius = 3f;                 
+    [SerializeField] private float orbitDuration = 1.5f;             
+    [SerializeField] private float orbitAngularSpeed = 360f;         
 
     [Header("Sound")]
     [SerializeField] private AudioClip summonSound;

@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 2070966111505650106}
   - component: {fileID: 2427757923315761031}
   - component: {fileID: 2848223924816680980}
-  - component: {fileID: -6887128004001863883}
   - component: {fileID: 3636832909995895232}
   - component: {fileID: -5907581226729715718}
   - component: {fileID: 2539616621550841685}
@@ -460,23 +459,6 @@ MonoBehaviour:
   skillFireInterval: 0.6
   skillDirections: 6
   armorRestorePerBurst: 5
---- !u!114 &-6887128004001863883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2560382371246760666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ee8a55c7593253498d60a941ea8401b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuCharacterStats
-  characterName: Witch
-  HP: 200
-  SP: 100
-  MP: 30
-  gameplayPrefab: {fileID: 2560382371246760666}
 --- !u!114 &3636832909995895232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,8 +471,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a16ccdb35668b3c479d3933887620987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  maxHP: 80
-  maxArmor: 50
+  characterName: Witch
+  maxHP: 150
+  maxArmor: 80
   maxMana: 100
   hpBar: {fileID: 0}
   armorBar: {fileID: 0}
@@ -510,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a736b29c93e4054f9ef3c3f88a54f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 15
+  moveSpeed: 20
   footstepSFX: {fileID: 0}
   footstepInterval: 0.25
 --- !u!82 &2539616621550841685

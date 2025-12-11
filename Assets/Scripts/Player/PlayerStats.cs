@@ -4,27 +4,32 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
+    [Header("Meta")]
+    [SerializeField] private string characterName = "Knight";
     [Header("Stats")]
     [SerializeField] protected float maxHP = 100f;
     [SerializeField] protected float maxArmor = 50f;
     [SerializeField] protected float maxMana = 100f;
-
+    public string CharacterName => characterName;
+    public float MaxHP => maxHP;
+    public float MaxSP => maxArmor;  // nếu bạn muốn SP = Armor
+    public float MaxMP => maxMana;
     protected float currentHP;
     protected float currentArmor;
     protected float currentMana;
 
     [Header("UI Bars")]
-    [SerializeField] private Image hpBar;
+    [SerializeField] private Image hpBar;    
     [SerializeField] private Image armorBar;
     [SerializeField] private Image manaBar;
 
     [Header("Sound")]
-    [SerializeField] private AudioClip buffPickupSFX;    // tiếng khi được buff
-    [SerializeField] private AudioClip hitSFX;           // tiếng khi nhận damage
-    [SerializeField] private AudioClip deathSFX;         // tiếng khi chết
+    [SerializeField] private AudioClip buffPickupSFX;   
+    [SerializeField] private AudioClip hitSFX;          
+    [SerializeField] private AudioClip deathSFX;         
 
     private AudioSource audioSource;
-    private PlayerMovement movement;                     // tham chiếu sang script movement
+    private PlayerMovement movement;                    
 
     public void SetupUIBars(Image hp, Image armor, Image mana)
     {
@@ -52,7 +57,7 @@ public class Player : MonoBehaviour
     {
         return SpendMana(amount);   // dùng hàm protected bên trong
     }
-    // ================== SOUND ==================
+   
 
     public virtual void PlayBuffSound()
     {
@@ -62,7 +67,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    // ================== COMBAT / STATS ==================
+   
 
     // Enemy gọi hàm này khi gây sát thương
     public virtual void TakeDamage(float damage)
@@ -127,7 +132,7 @@ public class Player : MonoBehaviour
         PlayBuffSound();
     }
 
-    // ==== Buff tốc chạy: Player vẫn có API cũ, nhưng ủy quyền cho PlayerMovement ====
+    // Buff tốc chạy: Player vẫn có API cũ, nhưng ủy quyền cho PlayerMovement 
     public virtual void AddSpeedBuff(float bonusSpeed, float duration)
     {
         if (movement != null)
@@ -164,7 +169,7 @@ public class Player : MonoBehaviour
 
     protected virtual void Die()
     {
-        if (deathSFX != null)
+        if (deathSFX != null)   
         {
             AudioSource.PlayClipAtPoint(deathSFX, transform.position);
         }
