@@ -12236,10 +12236,14 @@ MonoBehaviour:
   - {fileID: 794222810740916033, guid: 36c2f2089ea688148b21bb5e890f1bf5, type: 3}
   - {fileID: 4670672444604482154, guid: af4165eae9878af43bbc8ed5f30954c0, type: 3}
   - {fileID: 2107625622582256982, guid: 6427486018e76004c91c41d748d646f6, type: 3}
-  enemyCount: 8
+  enemyCount: 1
   spawnOnStart: 0
-  useFixedSpawnPoints: 0
-  spawnPoints: []
+  useFixedSpawnPoints: 1
+  spawnPoints:
+  - {fileID: 3542441658716125283}
+  - {fileID: 3152542729929816298}
+  - {fileID: 1213507772323940899}
+  - {fileID: 6527755511929799775}
 --- !u!61 &7540259534952989553
 BoxCollider2D:
   m_ObjectHideFlags: 0

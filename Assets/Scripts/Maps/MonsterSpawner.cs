@@ -5,24 +5,23 @@ public class MonsterSpawner : MonoBehaviour
     public Room room;
 
     [Header("Enemy Prefabs")]
-    public GameObject[] enemyPrefabs;   // nhiều loại enemy
-    public int enemyCount = 5;          // tổng số enemy trong phòng
+    public GameObject[] enemyPrefabs;   
+    public int enemyCount = 5;         
 
     [Header("Spawn Control")]
-    public bool spawnOnStart = false;   // phòng đầu thì true
+    public bool spawnOnStart = false;  
     public bool useFixedSpawnPoints = false;
-    public Transform[] spawnPoints;     // nếu muốn tự đặt điểm spawn
+    public Transform[] spawnPoints;   
 
     int aliveCount = 0;
     bool hasSpawned = false;
 
-    BoxCollider2D area;   // collider bao cả phòng (dùng trigger để detect Player)
-
+    BoxCollider2D area;  
     void Awake()
     {
         area = GetComponent<BoxCollider2D>();
 
-        // AUTO: nếu quên gán room trong Inspector thì tự tìm Room cha
+      
         if (room == null)
         {
             room = GetComponentInParent<Room>();
@@ -38,7 +37,7 @@ public class MonsterSpawner : MonoBehaviour
         if (spawnOnStart)
         {
             SpawnEnemies();
-            // phòng start: hiện tại KHÔNG đóng cửa
+         
         }
     }
 
@@ -72,7 +71,7 @@ public class MonsterSpawner : MonoBehaviour
 
         
 
-        // Đóng cửa khi vào phòng (trừ phòng đầu)
+      
         if (!spawnOnStart && room != null && aliveCount > 0)
         {
             room.CloseAllDoors();
@@ -82,14 +81,14 @@ public class MonsterSpawner : MonoBehaviour
 
     Vector3 GetSpawnPosition(int index)
     {
-        // Nếu muốn dùng các điểm spawn cố định
+      
         if (useFixedSpawnPoints && spawnPoints != null && spawnPoints.Length > 0)
         {
             Transform p = spawnPoints[index % spawnPoints.Length];
             return p.position;
         }
 
-        // Random trong BoxCollider2D của Spawner
+        
         if (area != null)
         {
             Vector2 size = area.size;
@@ -101,7 +100,7 @@ public class MonsterSpawner : MonoBehaviour
             return new Vector3(rx, ry, 0f);
         }
 
-        // fallback
+      
         return transform.position;
     }
 
@@ -117,7 +116,7 @@ public class MonsterSpawner : MonoBehaviour
         return enemyPrefabs[idx];
     }
 
-    void OnMonsterDie()
+    void OnMonsterDie() 
     {
         aliveCount--;
        

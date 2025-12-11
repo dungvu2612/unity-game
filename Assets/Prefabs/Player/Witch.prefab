@@ -236,6 +236,7 @@ GameObject:
   - component: {fileID: 3636832909995895232}
   - component: {fileID: -5907581226729715718}
   - component: {fileID: 2539616621550841685}
+  - component: {fileID: 8536665949355315073}
   m_Layer: 9
   m_Name: Witch
   m_TagString: Player
@@ -609,6 +610,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8536665949355315073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560382371246760666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcf4a8aafb1d644eb064e9d71d572bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillDash
+  dashDistance: 8
+  dashDuration: 0.15
+  cooldown: 1
+  dashManaCost: 15
+  invincibleDuringDash: 1
+  ignoreCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  dashSFX: {fileID: 0}
 --- !u!1 &6618743084870792985
 GameObject:
   m_ObjectHideFlags: 0

@@ -235,6 +235,7 @@ GameObject:
   - component: {fileID: 3426412874019435037}
   - component: {fileID: -7129218148768185566}
   - component: {fileID: 4985757737617661847}
+  - component: {fileID: 9074934505004230768}
   m_Layer: 9
   m_Name: IronGiant
   m_TagString: Player
@@ -591,6 +592,27 @@ MonoBehaviour:
   manaCost: 20
   cooldown: 5
   skillSFX: {fileID: 0}
+--- !u!114 &9074934505004230768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4882020774271422029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcf4a8aafb1d644eb064e9d71d572bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillDash
+  dashDistance: 10
+  dashDuration: 0.12
+  cooldown: 1
+  dashManaCost: 15
+  invincibleDuringDash: 1
+  ignoreCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  dashSFX: {fileID: 0}
 --- !u!1 &7971920674387359691
 GameObject:
   m_ObjectHideFlags: 0

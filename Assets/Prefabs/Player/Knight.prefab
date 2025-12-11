@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 4741382289748645361}
   - component: {fileID: -8906158442348719850}
   - component: {fileID: -7224709710647329414}
+  - component: {fileID: 542361211223257455}
   m_Layer: 9
   m_Name: Knight
   m_TagString: Player
@@ -620,3 +621,24 @@ MonoBehaviour:
   moveSpeed: 15
   footstepSFX: {fileID: 8300000, guid: df7087e4d8a8bb546bc08ce68632903f, type: 3}
   footstepInterval: 0.25
+--- !u!114 &542361211223257455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3652686414056317573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bcf4a8aafb1d644eb064e9d71d572bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillDash
+  dashDistance: 8
+  dashDuration: 0.15
+  cooldown: 1.5
+  dashManaCost: 15
+  invincibleDuringDash: 1
+  ignoreCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  dashSFX: {fileID: 0}
