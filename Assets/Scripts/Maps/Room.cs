@@ -9,7 +9,7 @@ public class Room : MonoBehaviour
     public GameObject doorLeft;
     public GameObject doorRight;
 
-    // hướng nào THỰC SỰ có phòng bên cạnh
+    // hướng nào có phòng bên cạnh
     public bool connectedUp;
     public bool connectedDown;
     public bool connectedLeft;
@@ -24,7 +24,7 @@ public class Room : MonoBehaviour
     bool cleared = false;
 
     // Được gọi bởi PathDungeonGenerator khi tạo hành lang giữa 2 phòng
-    // ❗ Chỉ đánh dấu kết nối, KHÔNG mở hay đóng cửa ở đây
+    // Chỉ đánh dấu kết nối, KHÔNG mở hay đóng cửa ở đây
     public void OpenDoor(Vector2Int dir)
     {
         if (dir == Vector2Int.up)
@@ -69,7 +69,7 @@ public class Room : MonoBehaviour
     // Đóng TẤT CẢ các cửa có nối phòng bên cạnh (cả 2 phía hành lang)
     public void CloseAllDoors()
     {
-        // UP
+       
         if (connectedUp)
         {
             if (doorUp != null) doorUp.SetActive(true);
@@ -77,7 +77,7 @@ public class Room : MonoBehaviour
                 upRoom.doorDown.SetActive(true);
         }
 
-        // DOWN
+        
         if (connectedDown)
         {
             if (doorDown != null) doorDown.SetActive(true);
@@ -85,7 +85,6 @@ public class Room : MonoBehaviour
                 downRoom.doorUp.SetActive(true);
         }
 
-        // LEFT
         if (connectedLeft)
         {
             if (doorLeft != null) doorLeft.SetActive(true);
@@ -93,7 +92,7 @@ public class Room : MonoBehaviour
                 leftRoom.doorRight.SetActive(true);
         }
 
-        // RIGHT
+        
         if (connectedRight)
         {
             if (doorRight != null) doorRight.SetActive(true);
@@ -105,7 +104,7 @@ public class Room : MonoBehaviour
     // Mở lại các cửa có nối phòng bên cạnh (cả 2 phía hành lang)
     public void OpenAllConnectedDoors()
     {
-        // UP
+       
         if (connectedUp)
         {
             if (doorUp != null) doorUp.SetActive(false);
@@ -113,7 +112,7 @@ public class Room : MonoBehaviour
                 upRoom.doorDown.SetActive(false);
         }
 
-        // DOWN
+       
         if (connectedDown)
         {
             if (doorDown != null) doorDown.SetActive(false);
@@ -121,7 +120,7 @@ public class Room : MonoBehaviour
                 downRoom.doorUp.SetActive(false);
         }
 
-        // LEFT
+       
         if (connectedLeft)
         {
             if (doorLeft != null) doorLeft.SetActive(false);
@@ -129,7 +128,7 @@ public class Room : MonoBehaviour
                 leftRoom.doorRight.SetActive(false);
         }
 
-        // RIGHT
+       
         if (connectedRight)
         {
             if (doorRight != null) doorRight.SetActive(false);
@@ -138,7 +137,6 @@ public class Room : MonoBehaviour
         }
     }
 
-    // Gọi khi quái trong phòng chết hết
     public void OnRoomCleared()
     {
         if (cleared) return;

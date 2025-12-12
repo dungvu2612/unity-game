@@ -111,7 +111,7 @@ MonoBehaviour:
   enableFlip: 1
   firePos: {fileID: 7871943950981895635}
   bulletPrefab: {fileID: 3786488955035653773, guid: c396579e7c8c303498f773a3f0a15ca5, type: 3}
-  shotDelay: 1.2
+  shotDelay: 1
   maxAmmo: 24
   currentAmmo: 0
   ammoText: {fileID: 0}

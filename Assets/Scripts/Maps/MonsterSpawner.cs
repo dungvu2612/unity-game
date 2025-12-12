@@ -56,7 +56,7 @@ public class MonsterSpawner : MonoBehaviour
             GameObject prefab = GetRandomEnemyPrefab();
             if (prefab == null) continue;
 
-            GameObject e = Instantiate(prefab, spawnPos, Quaternion.identity);
+            GameObject e = Instantiate(prefab, spawnPos, Quaternion.identity);//dung huong
             Enemy enemy = e.GetComponent<Enemy>();
             if (enemy != null)
             {

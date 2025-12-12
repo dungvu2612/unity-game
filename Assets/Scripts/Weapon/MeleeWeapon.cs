@@ -12,6 +12,7 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private Transform attackOrigin;
     [SerializeField] private float attackRadius = 1.2f;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private GameObject bloodPrefabs;
 
     [Header("Sound")]
     [SerializeField] private AudioClip swingSFX;
@@ -60,7 +61,7 @@ public class MeleeWeapon : MonoBehaviour
         nextAttackTime = Time.time + attackDelay;
 
         
-        Quaternion startRot = normalRotation;
+        Quaternion startRot = normalRotation;//LUU GOC DANH
 
       
         Quaternion endRot = startRot * Quaternion.Euler(0, 0, -swingAngle);
@@ -76,10 +77,10 @@ public class MeleeWeapon : MonoBehaviour
             t += Time.deltaTime / swingTime;
             float lerpT = Mathf.Clamp01(t);
 
-            transform.rotation = Quaternion.Slerp(startRot, endRot, lerpT);
+            transform.rotation = Quaternion.Slerp(startRot, endRot, lerpT);//XOAY VU KHI THEO KHUNG TRON
 
         
-            if (!hasHit && lerpT >= 0.5f)
+            if (!hasHit && lerpT >= 0.5f)//ĐÒN CHÉM DC 50% ANIMATION SE GAY HIT
             {
                 PerformHit();
                 hasHit = true;
@@ -117,6 +118,8 @@ public class MeleeWeapon : MonoBehaviour
             {
                 Debug.Log($"[MeleeWeapon] Hit enemy: {enemy.name}");
                 enemy.TakeDamage(20f);
+                GameObject blood = Instantiate(bloodPrefabs, transform.position, Quaternion.identity);
+                Destroy(blood, 1f);
             }
             else
             {

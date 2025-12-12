@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] protected float maxMana = 100f;
     public string CharacterName => characterName;
     public float MaxHP => maxHP;
-    public float MaxSP => maxArmor;  // nếu bạn muốn SP = Armor
+    public float MaxSP => maxArmor; 
     public float MaxMP => maxMana;
     protected float currentHP;
     protected float currentArmor;
@@ -126,8 +126,7 @@ public class Player : MonoBehaviour
     public virtual void RestoreHP(float amount)
     {
         if (amount <= 0f) return;
-
-        currentHP = Mathf.Clamp(currentHP + amount, 0f, maxHP);
+         currentHP = Mathf.Clamp(currentHP + amount, 0f, maxHP);
         UpdateBars();
         PlayBuffSound();
     }
@@ -158,7 +157,7 @@ public class Player : MonoBehaviour
     protected virtual void UpdateBars()
     {
         if (hpBar != null && maxHP > 0f)
-            hpBar.fillAmount = currentHP / maxHP;
+            hpBar.fillAmount = currentHP / maxHP;//TÍNH %
 
         if (armorBar != null && maxArmor > 0f)
             armorBar.fillAmount = currentArmor / maxArmor;

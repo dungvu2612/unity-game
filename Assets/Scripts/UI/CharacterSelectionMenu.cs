@@ -82,7 +82,7 @@ public class CharacterSelectionMenu : MonoBehaviour
 
         if (nameText != null) nameText.text = stats.CharacterName;
         if (hpText != null) hpText.text = stats.MaxHP.ToString();
-        if (spText != null) spText.text = stats.MaxSP.ToString(); // SP = Armor
+        if (spText != null) spText.text = stats.MaxSP.ToString(); 
         if (mpText != null) mpText.text = stats.MaxMP.ToString();
     }
 
@@ -91,7 +91,7 @@ public class CharacterSelectionMenu : MonoBehaviour
     {
         if (characters == null || characters.Length == 0) return;
 
-        currentIndex = (currentIndex + 1) % characters.Length;
+        currentIndex = (currentIndex + 1) % characters.Length;//chia láy dư, xoay vong
         ShowCharacter(currentIndex);
     }
 

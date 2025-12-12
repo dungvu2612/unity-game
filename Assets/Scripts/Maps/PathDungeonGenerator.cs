@@ -34,15 +34,15 @@ public class PathDungeonGenerator : MonoBehaviour
 
     void Start()
     {
-        // 1) Tính kích thước room
+        
         CalculateRoomSize();
 
-        // 2) Random số phòng trong khoảng [min, max]
+       
         roomCount = GetRandomRoomCount();
 
         Debug.Log($"[PathDungeonGenerator] Generate dungeon với {roomCount} rooms");
 
-        // 3) Generate
+       
         GenerateDungeon();
     }
 
@@ -52,7 +52,7 @@ public class PathDungeonGenerator : MonoBehaviour
         int min = Mathf.Max(1, minRoomCount);
         int max = Mathf.Max(min, maxRoomCount);
 
-        // Random.Range với int: max là exclusive → +1
+   
         return Random.Range(min, max + 1);
     }
 
@@ -75,7 +75,7 @@ public class PathDungeonGenerator : MonoBehaviour
         ConfigureMonsterSpawnerForPathIndex(startRoom, 0);
         lastRoom = startRoom;
 
-        // spawner phòng start – chỉ spawn khi player bước vào
+       
         MonsterSpawner startSpawner = startRoom.GetComponentInChildren<MonsterSpawner>();
         if (startSpawner != null)
         {
@@ -137,11 +137,11 @@ public class PathDungeonGenerator : MonoBehaviour
 
     void ConnectRooms(Room a, Room b, Vector2Int dir)
     {
-        a.OpenDoor(dir);
+        a.OpenDoor(dir);//VD DIR + RIGHT
         b.OpenDoor(-dir);
 
-        a.SetNeighbor(b, dir);
-        b.SetNeighbor(a, -dir);
+        a.SetNeighbor(b, dir); //a.rightRoom = b;
+        b.SetNeighbor(a, -dir);//b.leftRoom = a;
     }
 
     Vector2Int GetRandomDirection()
@@ -169,7 +169,7 @@ public class PathDungeonGenerator : MonoBehaviour
             spObj.transform.localPosition = Vector3.zero;
             sp = spObj.AddComponent<MonsterSpawner>();
             sp.room = lastRoom;
-
+            //CHECK PLAYER ĐI VÀO
             BoxCollider2D col = spObj.AddComponent<BoxCollider2D>();
             col.isTrigger = true;
             col.size = new Vector2(roomWidth, roomHeight);

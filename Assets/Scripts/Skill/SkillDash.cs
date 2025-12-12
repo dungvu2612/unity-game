@@ -64,7 +64,7 @@ public class SkillDash : MonoBehaviour
         if (dashSFX != null && audioSource != null)
             audioSource.PlayOneShot(dashSFX);
 
-        Vector2 dashDirection = GetDashDirection();
+        Vector2 dashDirection = GetDashDirection();//HUONGDAS
         Vector2 startPos = rb.position;
         Vector2 endPos = startPos + dashDirection * dashDistance;
 
@@ -74,7 +74,7 @@ public class SkillDash : MonoBehaviour
         if (invincibleDuringDash)
             SetIgnoreLayers(true);
 
-        while (t < dashDuration)
+        while (t < dashDuration)//CHẠY FRAME ĐẾN KHI HẾT THGIAN DASH
         {
             t += Time.deltaTime;
             float lerpT = t / dashDuration;

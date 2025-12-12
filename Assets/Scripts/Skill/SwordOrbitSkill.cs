@@ -138,12 +138,6 @@ public class KnightSwordOrbitSkill : MonoBehaviour
             yield return null;
         }
 
-         foreach (var s in swords)
-        {
-            if (s != null) Destroy(s);
-        }
-        swords.Clear();
-
-        isCastingSkill = false;
+        
     }
 }

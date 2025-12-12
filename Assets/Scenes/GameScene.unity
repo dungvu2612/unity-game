@@ -498,11 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee8a55c7593253498d60a941ea8401b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuCharacterStats
-  characterName: warriotr
-  HP: 0
-  SP: 0
-  MP: 0
-  gameplayPrefab: {fileID: 0}
 --- !u!1 &46462988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1930,7 +1925,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 0.52
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -18623,7 +18618,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -53.099976, y: -48.100006}
+  m_AnchoredPosition: {x: -53.099976, y: -48.099976}
   m_SizeDelta: {x: 74.880005, y: 62.82901}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1521132141
@@ -19066,7 +19061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 143, y: -65.366}
+  m_AnchoredPosition: {x: 143, y: -65.36597}
   m_SizeDelta: {x: 334.26898, y: 114.630005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1647280359
@@ -21479,7 +21474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba3e9dd130bacb4694c1dc93fa6380c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 2115765121}
   menuMusic: {fileID: 8300000, guid: 6c7402b6b3095464d9db850885c4d565, type: 3}
   gameplayMusic: {fileID: 8300000, guid: 77dc4732fe1ac8040827da3ba15e613b, type: 3}
   bossMusic: {fileID: 8300000, guid: 73e800617cbae8843909627cf37f3b01, type: 3}
